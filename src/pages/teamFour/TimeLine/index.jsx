@@ -20,36 +20,71 @@ const testData = [
   {
     title: "requested",
     date: "2:24",
+    day: "now",
   },
   {
     title: "sent",
     date: "9:03",
+    day: "now",
   },
   {
     title: "completed",
     date: "14:83",
+    day: "now",
+  },
+
+  {
+    title: "completed",
+    day: "now",
+    date: "14:83",
+  },
+  {
+    title: "completed",
+    date: "14:83",
+    day: "now",
+  },
+  {
+    title: "completed",
+    date: "14:83",
+    day: "now",
+  },
+  {
+    title: "completed",
+    date: "14:83",
+    day: "now",
+  },
+  {
+    title: "completed",
+    date: "14:83",
+    day: "now",
+  },
+  {
+    title: "completed",
+    date: "14:83",
+    day: "now",
   },
 ];
 
 export const TimeLine = ({ data = testData }) => {
-  const classes = {
-    main: {
-      div: " absolute w-3 h-3 bg-gray-200 rounded-full  top-0 left-0 -translate-x-1/2   border border-white border-[#4375FF] bg-[#4375FF]",
-    },
-    second: {
-      div: "absolute w-3 h-3 bg-gray-200 rounded-full  top-0 left-0 -translate-x-1/2 border border-white dark:border-gray-900 dark:bg-gray-700",
-      h3: "",
-    },
-  };
+  const heightActiveLine = Math.floor(100 / (data.length - 1));
+  const heightNonActiveLine = Math.floor(
+    ((data.length - 2) / (data.length - 1.5)) * 100
+  );
   return (
     <Card className="shadow-sm">
       <h4 className="mb-2">Timeline</h4>
-      {/* <Settper data={data} /> */}
       <div className="">
-        <ol class=" relative flex flex-col ">
-          {getItems(data, classes)}
-          {/* <div className=" absolute h-full w-2 bg-red top-0 left-1/2 -translate-x-1/2 "></div> */}
-        </ol>
+        <div className="relative z-10">
+          <ol className="  flex flex-col gap-4 ">{getItems(data)}</ol>
+          <div
+            className={`absolute w-[2px]  bg-[#4375FF] top-[2px] left-1/2 -translate-x-1/2 -z-10`}
+            style={{ height: `${heightActiveLine}%` }}
+          ></div>
+          <div
+            className={` absolute  w-[2px] bg-gray-400 top-[2px] left-1/2 -translate-x-1/2 -z-20`}
+            style={{ height: `${heightNonActiveLine}%` }}
+          ></div>
+        </div>
       </div>
     </Card>
   );
@@ -57,28 +92,37 @@ export const TimeLine = ({ data = testData }) => {
 
 export default TimeLine;
 
-function getItem(item, className = "") {
+function getItem(item, isActive) {
+  const className = isActive
+    ? "border-[#4375FF] bg-[#4375FF]"
+    : "border-gray-400 bg-gray-400";
+  const pStyle = isActive ? "text-black" : "text-gray-400";
   return (
-    <li class=" flex flex-row  justify-between">
-      <time class=" text-sm font-normal leading-none text-gray-400 dark:text-gray-500">
-        February 2022
+    <li className=" relative flex flex-row  justify-between">
+      <time
+        className={` flex-grow text-sm font-normal leading-none text-gray-400 `}
+      >
+        <p className={pStyle}>{item.date}</p>
+        <p className="">{item.day}</p>
       </time>
-      <div className="relative w-1 bg-red  ">
-        <div className="absolute w-3 h-3 rounded-full    top-0 -translate-x-1/2   border  border-[#4375FF] bg-[#4375FF]"></div>
+      <div className="flex-grow-[3]">
+        <div
+          className={`  absolute w-3 h-3 rounded-full    top-0 -translate-x-1/2 left-1/2  border   ${className}`}
+        ></div>
       </div>
-      <h3 class=" border  border-blue  text-b font-semibold text-gray-900 relative">
-        Application UI
-        {/* <div class={className.div}></div> */}
+      <h3
+        className={`flex-grow  capitalize text-sm   text-b font-semibold ${pStyle}`}
+      >
+        <span>{item.title}</span>
       </h3>
     </li>
   );
 }
 
-function getItems(data, classes) {
+function getItems(data) {
   let result = [];
   for (let i = data.length - 1; i >= 0; i--) {
-    const classBransh = i == 0 ? classes.main : classes.second;
-    result.push(getItem(data[i], classBransh));
+    result.push(getItem(data[i], i == data.length - 1));
   }
   return result;
 }

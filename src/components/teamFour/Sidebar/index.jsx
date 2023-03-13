@@ -50,7 +50,7 @@ export const Sidebar = ({
         title="Withdrawal"
         className="  py-2 px-[16px] "
       >
-        <div className="flex-grow flex flex-col justify-between">
+        <div className="flex-grow flex flex-col justify-between gap-4">
           <div className=" flex flex-col  gap-4 ">
             <Header data={data} />
             <Details isBank={data.type == "bank"} data={data.infos} />
