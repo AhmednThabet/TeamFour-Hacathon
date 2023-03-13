@@ -9,7 +9,7 @@ import {
   InformationCircleIcon as InformationCircleIconMini,
   CheckIcon as CheckIconMini,
 } from "@heroicons/react/20/solid";
-import { InformationCircleIcon } from "@heroicons/react/24/outline";
+import { InformationCircleIcon, PlusIcon } from "@heroicons/react/24/outline";
 
 export {
   ErrorIconMini,
@@ -22,4 +22,5 @@ export {
   InformationCircleIconMini,
   InformationCircleIcon,
   CheckIconMini,
+  PlusIcon,
 };
