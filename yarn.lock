@@ -1949,7 +1949,7 @@
   "resolved" "https://registry.npmjs.org/supports-preserve-symlinks-flag/-/supports-preserve-symlinks-flag-1.0.0.tgz"
   "version" "1.0.0"
 
-"swr@^2.0.0":
+"swr@^2.1.0":
   "integrity" "sha512-4hYl5p3/KalQ1MORealM79g/DtLohmud6yyfXw5l4wjtFksYUnocRFudvyaoUtgj3FrVNK9lS25Av9dsZYvz0g=="
   "resolved" "https://registry.npmjs.org/swr/-/swr-2.1.0.tgz"
   "version" "2.1.0"
