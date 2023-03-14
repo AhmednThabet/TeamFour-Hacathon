@@ -1,22 +1,29 @@
-import { Card, Select } from "components";
+import { Button, Card, Select } from "components";
 import OfficeOption from "features/Hacathon-TeamFour/components/OfficeOption";
-import Recipient from "features/Hacathon-TeamFour/components/Recipient";
-import SelectTeamFour from "features/Hacathon-TeamFour/components/SelectTeamFour";
-import React from "react";
+import WithdrawPreview from "features/Hacathon-TeamFour/components/withdrawPreview";
+import React, { useState } from "react";
 // import { MockOffice } from "Mock/MockOffice";
 
 const Index = () => {
+  const [visibleConfirm, setVisibleConfirm] = useState(false);
+
+  const handleConfirm = () => {
+    setVisibleConfirm((pre) => !pre);
+  };
+
   return (
-    <Card className="min-w-[50%]">
-      <div className="payoutSystem max-w[907px] pt-[400px] h-[100vh] bg-white">
-        {/* <Card>
-        <div className="Office_Section">
-          <Select label="Office" options={MockOffice} />
-          <Recipient />
-        </div>
-      </Card> */}
+    <Card className="min-w-[50%] flex flex-col items-center relative">
+      <div className="payoutSystem max-w[907px] pt-[400px] h-[100vh] bg-white ">
         <OfficeOption />
       </div>
+      <Button className=" mt-10 w-5/6" onClick={handleConfirm}>
+        Withdraw
+      </Button>
+      {visibleConfirm && (
+        <Card className=" absolute left-[15%] top-[15%]">
+          <WithdrawPreview handleConfirm={handleConfirm} />
+        </Card>
+      )}
     </Card>
   );
 };

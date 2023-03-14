@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import { Card } from "components";
 import { Listbox } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import Office from "./Office";
 import { useSWRTeam } from "../../Hook/useSWRTeam";
+import Loading from "features/Hacathon-TeamFour/components/Loading";
 
 export const Recipient = () => {
   const [dataState, setdata] = useState<any>("");
@@ -20,6 +20,9 @@ export const Recipient = () => {
 
   const [selectedPerson, setSelectedPerson] = useState();
 
+  useEffect(() => {
+    setSelectedPerson(dataState && dataState[0]);
+  }, [dataState]);
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -27,9 +30,9 @@ export const Recipient = () => {
       <div className=" max-w-xl  mx-auto relative">
         <label htmlFor="Office">Office</label>
         <Listbox.Button className="text-gray-dark flex justify-center items-center border-2 w-full rounded-md ">
-          {selectedPerson && (
+          {(selectedPerson && (
             <Office key={dataState._id} data={selectedPerson} />
-          )}
+          )) || <Loading className=" min-w-[400px]" />}
           <ChevronDownIcon height={30} width={30} className="mx-2" />
         </Listbox.Button>
         <Listbox.Options className="absolute -top-96 right-0 bg-white  w-full">

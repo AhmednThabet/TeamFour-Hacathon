@@ -1,8 +1,6 @@
 import React from "react";
 
 const Office = (data: any) => {
-  console.log(data);
-
   if (data) {
     return (
       <div className="flex w-full flex-col p-5 border-b-[#E2E2E2] border-b-2 cursor-pointer ">
