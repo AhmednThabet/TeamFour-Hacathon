@@ -55,6 +55,7 @@ export const VerifyMobileForm = ({ onVerify }: { onVerify: () => void }) => {
         startIcon={<ErrorIconMini className="w-5 h5" />}
         text={error?.message || otpError}
       />
+
       <Button type="submit" buttonSize="small" fullWidth>
         {loading ? "Loading.." : "Continue"}
       </Button>
