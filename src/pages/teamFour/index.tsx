@@ -1,41 +1,23 @@
 import { Card, Select } from "components";
 import OfficeOption from "features/Hacathon-TeamFour/components/OfficeOption";
+import Recipient from "features/Hacathon-TeamFour/components/Recipient";
 import SelectTeamFour from "features/Hacathon-TeamFour/components/SelectTeamFour";
 import React from "react";
 // import { MockOffice } from "Mock/MockOffice";
 
 const Index = () => {
-  const MockOffice = [
-    {
-      value: "firstone",
-      label: <OfficeOption />,
-    },
-    {
-      value: "secondone",
-      label: "secondeone",
-    },
-    {
-      value: "thirdone",
-      label: "thirdeone",
-    },
-    {
-      value: "fourone",
-      label: "<OfficeOption />",
-    },
-  ];
-
   return (
-    <div className="payoutSystem max-w[907px] min-w-[50%] h-[890px]">
-      <Card>
-        <div className=" h-64 bg-gray flex justify-center items-center">
-          shayma section
-        </div>
+    <Card className="min-w-[50%]">
+      <div className="payoutSystem max-w[907px] pt-[400px] h-[100vh] bg-white">
+        {/* <Card>
         <div className="Office_Section">
-          {/* <Select label="Office" options={MockOffice} /> */}
-          <OfficeOption />
+          <Select label="Office" options={MockOffice} />
+          <Recipient />
         </div>
-      </Card>
-    </div>
+      </Card> */}
+        <OfficeOption />
+      </div>
+    </Card>
   );
 };
 

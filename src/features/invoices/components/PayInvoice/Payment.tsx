@@ -3,7 +3,8 @@ import { Divider, Image, ToggleButtons } from "components";
 import { PAYMENT_METHODS, CLIENT_FEES } from "../../data";
 import { usePayInvoice } from "../../contexts/PayInvoice";
 import { usePaymentOptions } from "../../hooks";
-import { calcFeeValue, getPaymentOption } from "../../utils";
+// import { calcFeeValue } from "../../utils";
+// import { calcFeeValue, getPaymentOption } from "../../utils";
 import type { PaymentMethodValue, ClientFeesValue } from "../../types";
 
 const Payment = () => {
@@ -11,7 +12,7 @@ const Payment = () => {
   const [clientFee, setClientFee] = useState<ClientFeesValue>();
   const { invoiceId } = usePayInvoice();
   const { paymentOptions } = usePaymentOptions(invoiceId);
-  const selectedPaymentOption = getPaymentOption(paymentMethod, paymentOptions);
+  // const selectedPaymentOption = getPaymentOption(paymentMethod, paymentOptions);
 
   return (
     <>
@@ -66,7 +67,7 @@ const Payment = () => {
                     {fee.label}
                     <span className="block text-xs">
                       {paymentOptions?.currency}{" "}
-                      {calcFeeValue(fee.value, selectedPaymentOption)}
+                      {/* {calcFeeValue(fee.value, selectedPaymentOption)} */}
                     </span>
                   </span>
                   <Image
