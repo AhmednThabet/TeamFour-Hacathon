@@ -2,7 +2,7 @@ import { Card, Input, Button } from "components";
 import { Dialog, Transition } from "@headlessui/react";
 import useForm from "lib/react-hook-form";
 import { useCurrentUser } from "features/authentication";
-const AddresipentForm = ({ setVisibleAddOffice }: any) => {
+const Addbank = ({ setVisibleAddbank }: any) => {
   const { user } = useCurrentUser();
   const { register, watch, handleSubmit } = useForm({
     defaultValues: {
@@ -57,4 +57,4 @@ const AddresipentForm = ({ setVisibleAddOffice }: any) => {
   );
 };
 
-export default AddresipentForm;
+export default Addbank;

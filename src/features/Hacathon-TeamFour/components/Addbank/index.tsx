@@ -1,20 +1,20 @@
 import { Dialog } from "@headlessui/react";
 import React from "react";
-import AddOfficeForm from "../AddOfficeForm";
+import AddbankForm from "../AddbankForm";
 
-const AddOffice = ({ setVisibleAddOffice, visibleAddOffice }: any) => {
+const Addbank = ({ setVisibleAddbank, visibleAddbank }: any) => {
   return (
     <div>
       <Dialog
-        open={visibleAddOffice}
-        onClose={() => setVisibleAddOffice(false)}
+        open={visibleAddbank}
+        onClose={() => setVisibleAddbank(false)}
         className="relative z-50 "
       >
         <Dialog.Overlay className="bg-black fixed opacity-50 inset-0" />
 
         <div className="fixed inset-0 flex items-center  justify-center p-4">
           <Dialog.Panel className="w-full max-w-sm rounded ">
-            <AddOfficeForm setVisibleAddOffice={setVisibleAddOffice} />
+            <AddbankForm setVisibleAddbank={setVisibleAddbank} />
           </Dialog.Panel>
         </div>
       </Dialog>
@@ -22,4 +22,4 @@ const AddOffice = ({ setVisibleAddOffice, visibleAddOffice }: any) => {
   );
 };
 
-export default AddOffice;
+export default Addbank;
