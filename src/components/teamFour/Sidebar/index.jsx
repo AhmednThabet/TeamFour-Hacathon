@@ -2,12 +2,14 @@ import { TimeLine, Interstions, Header, Details } from "./components";
 import { Aside, Button, Loading } from "components";
 import { useEffect, useState } from "react";
 import { useFetch } from "hooks";
+import { API } from "../API";
 
 function format(data) {
   let finshData = {
     status: data.status,
     amount: data.amount,
     history: data.history,
+    id: data._id,
   };
 
   if (data.typeWithdraw == "bank") {
@@ -164,26 +166,26 @@ function getAction(status) {
     case "pending":
       return {
         text: "Cancel Withdrawal",
-        action: () => console.log("pending"),
+        action: (id) => API.cancelWithdrawRequest(id),
         disabled: false,
       };
     case "canceled":
       return {
-        text: "Canceled",
-        action: () => console.log("Canceled"),
+        text: "Confirm Receipt",
+        action: (id) => API.confrimWithdrawRequest(id),
         disabled: true,
       };
     case "completed":
       return {
-        text: "Report a Problemt",
-        action: () => console.log("Report a Problemt"),
+        text: "Report a Problem",
+        action: () => console.log("Report a Problem\n the API is not make"),
         disabled: false,
       };
     case "sent":
     case "ready":
       return {
         text: "Confirm Receipt",
-        action: () => console.log("Confirm Receipt"),
+        action: (id) => API.confrimWithdrawRequest(id),
         disabled: false,
       };
   }
@@ -194,9 +196,12 @@ export const Sidebar = ({ isShow = false, setIsShow, isLoading, data }) => {
     setIsShow(false);
   }
 
+  function request(url) {
+    console.log("request", url);
+  }
+
   const content = !isLoading && data && format(data);
   const action = content && getAction(content?.status);
-  console.log(content);
   return (
     <Aside
       isShow={isShow}
@@ -223,7 +228,7 @@ export const Sidebar = ({ isShow = false, setIsShow, isLoading, data }) => {
               <Interstions data={content.interstions} />
             </div>
             <Button
-              onClick={action.action}
+              onClick={() => request(action.action(content.id))}
               className="bg-white !text-black hover:!bg-white shadow-sm border border-[#E2E2E2] capitalize  "
               disabled={action.disabled && true}
             >

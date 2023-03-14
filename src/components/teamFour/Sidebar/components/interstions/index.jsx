@@ -2,7 +2,6 @@ import React from "react";
 import { Card } from "components";
 
 export const Interstions = ({ data }) => {
-  console.log("data =>", data);
   return (
     <Card className="shadow-sm text-sm">
       <h4 h4 className="font-semibold">
