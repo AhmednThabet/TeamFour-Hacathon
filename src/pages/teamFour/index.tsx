@@ -4,7 +4,7 @@ const Index = () => {
   return (
     <div>
       Test TeamFour
-      {/* <Recipient /> */}
+      <Recipient />
     </div>
   );
 };
