@@ -1,19 +1,22 @@
 import React from "react";
 import { Card } from "components";
 
-export const Instructions = ({ data }) => {
+export const Interstions = ({ data }) => {
+  console.log("data =>", data);
   return (
     <Card className="shadow-sm text-sm">
       <h4 h4 className="font-semibold">
-        Instructions
+        Interstions
       </h4>
-      <ul className="flex flex-col gap-2 list-disc list-inside ">
+      <ul className="flex flex-col gap-2 list-disc pl-4 mt-1">
         {data.map((item, index) => (
-          <li key={index}>{item}</li>
+          <li key={index}>
+            <p>{item}</p>
+          </li>
         ))}
       </ul>
     </Card>
   );
 };
 
-export default Instructions;
+export default Interstions;

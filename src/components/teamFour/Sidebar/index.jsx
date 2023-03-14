@@ -1,4 +1,4 @@
-import { TimeLine, Interstion, Header, Details } from "./components";
+import { TimeLine, Interstions, Header, Details } from "./components";
 import { Aside, Button, Loading } from "components";
 import { useEffect, useState } from "react";
 import { useFetch } from "hooks";
@@ -18,16 +18,29 @@ function format(data) {
       },
       isBank: true,
       ...finshData,
+      interstions: [
+        "Open your bank account app to ensure payment delivery",
+        "Avoid opening support ticket before expected date",
+
+        "Confirm receiving your payment",
+      ],
     };
   } else {
     finshData = {
       provider: {
         name: data.office.name,
-        infos: data.office.address,
+        infos: "",
         fees: data.office.fees,
       },
       isBank: false,
       ...finshData,
+      interstions: [
+        `Address: ${data.office.address}`,
+        "Working hours from 9:00 am to 7:00 pm",
+        "Bring your ID for identification",
+        "Confirm receiving your payment",
+        `Office fees ${data.office.fees}`,
+      ],
     };
   }
   return finshData;
@@ -183,7 +196,7 @@ export const Sidebar = ({ isShow = false, setIsShow, isLoading, data }) => {
 
   const content = !isLoading && data && format(data);
   const action = content && getAction(content?.status);
-
+  console.log(content);
   return (
     <Aside
       isShow={isShow}
@@ -207,7 +220,7 @@ export const Sidebar = ({ isShow = false, setIsShow, isLoading, data }) => {
               <Header data={content} />
               <Details data={content} />
               <TimeLine data={content?.history} />
-              {/* <Interstion data={data.instructions} /> */}
+              <Interstions data={content.interstions} />
             </div>
             <Button
               onClick={action.action}
