@@ -1,9 +1,10 @@
 import axios from "axios";
 import { useSWR } from "lib/swr";
 import { useCurrentUser } from "features/authentication";
+import { getCookie } from "lib/js-cookie";
 
 
-export const useSWRTeam = (url, headers = initiall) => {
+export const useSWRTeam = (url) => {
   const { user } = useCurrentUser();
   const token = getCookie("currentUser").accessToken;
   const fetcher = (url) => {

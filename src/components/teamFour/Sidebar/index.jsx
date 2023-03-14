@@ -1,6 +1,8 @@
 import { TimeLine, Interstion, Header, Details } from "./components";
 import { Aside, Button, Loading } from "components";
 import { useEffect, useState } from "react";
+import { useSWRTeam } from "hooks/useSWR/useSWRTeam";
+import { API_SERVICES_URLS } from "data";
 
 function format(data) {
   let finshData = {
@@ -35,11 +37,9 @@ function format(data) {
 export const Sidebar = ({
   isShow = false,
   setIsShow,
-  data,
   id,
   textButton = "Cancel With drawal",
 }) => {
-  const finshData = format(data);
   function handleClose() {
     setIsShow(false);
   }
@@ -49,13 +49,19 @@ export const Sidebar = ({
     console.log("dfsd");
   }
 
-  const [isLoading, setIsLoading] = useState(true);
-  useEffect(() => {
-    setTimeout(() => setIsLoading(false), 2000);
-    console.log("dsfdsdfs");
-  });
+  let formatData = null;
 
-  console.log(isLoading);
+  const { data, error, isLoading } = useSWRTeam(
+    API_SERVICES_URLS.WITHDRAWAL.GetRequestDetails(id)
+  );
+  console.log(API_SERVICES_URLS.WITHDRAWAL.GetRequestDetails(id));
+
+  useEffect(() => {
+    if (!isLoading) {
+      console.log(data);
+      formatData = format(data.data);
+    }
+  }, [isLoading]);
 
   return (
     <>
@@ -69,9 +75,9 @@ export const Sidebar = ({
           {!isLoading ? (
             <>
               <div className=" flex flex-col  gap-4 ">
-                <Header data={finshData} />
-                <Details data={finshData} />
-                <TimeLine data={data.history} />
+                <Header data={formatData} />
+                <Details data={formatData} />
+                <TimeLine data={formatData.history} />
                 {/* <Interstion data={data.instructions} /> */}
               </div>
 
