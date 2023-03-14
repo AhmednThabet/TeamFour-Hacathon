@@ -2,6 +2,7 @@ import { Fragment } from "react";
 import { Transition } from "@headlessui/react";
 import { ChevronLeftIconMini } from "lib/@heroicons";
 import { IconButton } from "components";
+
 export const Aside = ({
   isShow = false,
   setIsShow,
@@ -25,7 +26,7 @@ export const Aside = ({
       leaveTo=" translate-x-full "
     >
       <div
-        className={`fixed top-0 right-0 h-screen w-fill sm:w-[350px]  bg-gray-light border-2 border-[#D4D4D4] overflow-scroll px-2 py-5 flex flex-col gap-2 ${className}`}
+        className={`fixed top-0 right-0 h-screen w-[300px] sm:w-[350px]  bg-gray-light border-2 border-[#D4D4D4] overflow-y-auto px-2 py-5 flex flex-col gap-2 ${className}`}
       >
         <div className=" flex items-center">
           <IconButton
