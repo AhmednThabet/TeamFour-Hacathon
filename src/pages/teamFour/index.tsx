@@ -1,7 +1,9 @@
-import React from "react";
-
-const Index = () => {
-  return <div>Test TeamFour</div>;
+import { HelperText,NoSsr  } from "components";
+export const CardWithdraw = ({ classname }: any) => {
+  
+  return <NoSsr>
+    <div></div>
+    </NoSsr>;
 };
 
-export default Index;
+export default CardWithdraw;
