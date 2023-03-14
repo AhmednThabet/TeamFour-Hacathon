@@ -22,7 +22,7 @@ function getClassName(status) {
       return "bg-[#F4F7FD] text-[#0044FF]";
     case "completed":
       return "bg-[#F3F3F3] text-black";
-    case "completed":
+    case "canceled":
       return "bg-[#F2F4F7] text-[#BEC2C6]";
     default:
       return "bg-gray-200 text-black";

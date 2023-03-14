@@ -4,7 +4,7 @@ import { Card } from "components";
 export const TimeLine = ({ data = [] }) => {
   let heightActiveLine = Math.floor((1 / data.length) * 100);
   let heightNonActiveLine = Math.floor(
-    ((data.length - 2) / (data.length - 1.2)) * 100
+    ((data.length - 2) / (data.length - 1.3)) * 100
   );
   if (data.length <= 1) {
     heightActiveLine = "";
@@ -32,13 +32,13 @@ export const TimeLine = ({ data = [] }) => {
 
 export default TimeLine;
 
-function getItem(item, isActive) {
+function getItem(item, index, isActive) {
   const className = isActive
     ? "border-[#4375FF] bg-[#4375FF]"
     : "border-gray-400 bg-gray-400";
   const pStyle = isActive ? "text-black" : "text-gray-400";
   return (
-    <li key={Date.now()}>
+    <li key={index}>
       <h3
         className={` w-full flex flex-row justify-between relative  capitalize text-xs  text-b font-semibold pb-4  ${pStyle}`}
       >
@@ -62,7 +62,7 @@ function getItem(item, isActive) {
 }
 
 function getItems(data) {
-  return data.map((item, index) => getItem(item, index == 0));
+  return data.map((item, index) => getItem(item, index, index == 0));
 }
 
 function getDay(time) {
