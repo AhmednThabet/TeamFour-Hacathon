@@ -4,7 +4,7 @@ type ForContext = {
   data: {};
   users: [];
 };
-const DataList = createContext<ForContext>({
+export const DataList = createContext<ForContext>({
   id: 0,
   data: {},
   users: [],

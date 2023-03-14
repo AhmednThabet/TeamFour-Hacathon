@@ -11,8 +11,9 @@ import useForm from "lib/react-hook-form";
 import SideBar from "layouts/SideBar";
 const Home = ({ classname }: any) => {
   const { user } = useCurrentUser();
-  const [message, setMessage] = useState(`$ ${user?.balance}`);
+  const [message, setMessage] = useState(user?.balance);
   const [active, setActive] = useState(false);
+  const [helpertext , setHelpertext] = useState();
   const handleClick = () => {
     setActive(!active);
   };
@@ -23,18 +24,32 @@ const Home = ({ classname }: any) => {
     clearErrorOnChange,
   } = useForm();
 
-  const handleChange = (e, data) => {
-    e.preventDefault();
-    const number = parseFloat(data);
-    if (isNaN(number)) {
-      return "Not a number";
-    } else {
-      return Math.round(number);
-    }
-  };
-  function checkFraction(e) {
-    setMessage(e.target.value);
-  }
+  // const handleChange = (e, data) => {
+  //    const number = parseFloat(data);
+  //   if (isNaN(number)) {
+  //     return "Not a number";
+  //   } else {
+  //     return Math.round(number);
+  //   }
+  // };
+
+
+
+  function checkFraction(input) {
+const data = input.target.value;
+
+// if(isNaN(data)) 
+// setHelpertext("Not a number")
+
+// if(bank){
+//   setMessage(data)
+
+// }else if(cash){
+//   Math.floor(data)!=data?setHelpertext("dont  enter cient")
+//   setMessage(Math.floor(data))
+// }
+
+   }
 
   return (
     <NoSsr>
@@ -117,20 +132,20 @@ const Home = ({ classname }: any) => {
               </div>
             </div>
             <div className="flex flex-row justify-center mt-2 px-4">
-              <form onSubmit={handleChange}>
+              <form  >
                 <input
                   className="flex  justify-center w-[165px] h-[48px] py-2 text-center rounded-md mb-4 bg-[#FDFDFD] text-[#000000] font-bold text-xl font-sans 	border-2 border-[#D4D4D4] "
                   value={message}
                   onChange={checkFraction}
                 />
               </form>
-            </div>
-            <HelperText
+            </div> 
+          {helpertext &&  <HelperText
               className="text-red w-full text-xs justify-center min-h-[20px]"
               startIcon={<ErrorIconMini className="w-5 h5" />}
             >
-              <p>You can't withdraw cents in cash.</p>
-            </HelperText>
+              <p>{helpertext}</p>
+            </HelperText>}
             <Tab.Panel>Content 1</Tab.Panel>
         <Tab.Panel>Content 2</Tab.Panel>
       </Tab.Panels>
