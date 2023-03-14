@@ -8,7 +8,7 @@ export const useSWRTeam = (url) => {
         headers: {
           Authorization:
             "Bearer " +
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoiNjNkOTE2MGY3YzE3ZDY3MGI1ZDZhNmQ0Iiwicm9sZSI6MX0sImV4cCI6MTY3ODc5ODYyNCwiaWF0IjoxNjc4NzEyMjI0fQ.ThykxOqO0e_LdQtrbgIqtSUVLp0mbPMQYKbmGtMwM90",
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoiNjNlMTA0YWE4YmJhMmNiM2Y3NTRkN2RiIiwicm9sZSI6MH0sImV4cCI6MTY3ODkwMDE4MiwiaWF0IjoxNjc4ODEzNzgyfQ.lHs8OzxSKzPn7Y3EV_aLZkkG3x2j_TSVaAJVFAZdsUk",
         },
       })
       .then((res) => res.data);
@@ -16,7 +16,7 @@ export const useSWRTeam = (url) => {
   const { data, error } = useSWR(
     [
       url,
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoiNjNkOTE2MGY3YzE3ZDY3MGI1ZDZhNmQ0Iiwicm9sZSI6MX0sImV4cCI6MTY3ODc5ODYyNCwiaWF0IjoxNjc4NzEyMjI0fQ.ThykxOqO0e_LdQtrbgIqtSUVLp0mbPMQYKbmGtMwM90",
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoiNjNlMTA0YWE4YmJhMmNiM2Y3NTRkN2RiIiwicm9sZSI6MH0sImV4cCI6MTY3ODkwMDE4MiwiaWF0IjoxNjc4ODEzNzgyfQ.lHs8OzxSKzPn7Y3EV_aLZkkG3x2j_TSVaAJVFAZdsUk",
     ],
     fetcher
   );
