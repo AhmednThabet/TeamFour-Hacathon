@@ -1,4 +1,4 @@
-import { Recipient } from "features/Hacathon-TeamFour/components/Recipient";
+import { Recipient } from "features/Hacathon-TeamFour/components/Recipient/Recipient";
 
 const Index = () => {
   return (
