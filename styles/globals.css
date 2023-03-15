@@ -18,6 +18,7 @@
 @layer base {
   body {
     @apply bg-gray-light;
+    
   }
 }
 #resipients::-webkit-scrollbar {

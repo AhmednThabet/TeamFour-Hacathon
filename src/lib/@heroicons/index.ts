@@ -11,6 +11,8 @@ import {
   PlusIcon as Plus,
   Bars3CenterLeftIcon as MenuBar,
 } from "@heroicons/react/20/solid";
+
+
 import {
   InformationCircleIcon,
   PlusIcon,
@@ -26,8 +28,11 @@ import {
   Cog8ToothIcon as Settings,
   ArrowRightOnRectangleIcon as LogOuticon,
   ArrowDownTrayIcon as Download,
-  PaperAirplaneIcon as Send,
-} from "@heroicons/react/24/outline";
+  MagnifyingGlassIcon as MagnifyingGlassIcon,
+  AdjustmentsHorizontalIcon as AdjustmentsHorizontalIcon,
+  ArrowsUpDownIcon as ArrowsUpDownIcon,
+  UserCircleIcon as User,
+  PaperAirplaneIcon as Send,} from "@heroicons/react/24/outline";
 
 export {
   ErrorIconMini,
@@ -53,7 +58,11 @@ export {
   Settings,
   LogOuticon,
   Download,
+  User,
   Send,
   Plus,
   MenuBar,
+  MagnifyingGlassIcon,
+  AdjustmentsHorizontalIcon,
+  ArrowsUpDownIcon,
 };

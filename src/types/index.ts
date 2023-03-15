@@ -45,6 +45,7 @@ export type UserType = {
       | "bank_statement"
       | "electricity_bill"
       | "other";
+      
     addressFile?: string;
     otherDocumentType?: string | null;
   };
@@ -67,3 +68,15 @@ export type CurrentUserType = {
   refreshToken: string;
   user: UserType;
 };
+export type Data =
+  {
+    name: string,
+    date?: number,
+    amount?: number,
+    status?: string,
+
+  }[]
+
+export type SortKeys = keyof Data[0];
+
+export type SortOrder = "ascn" | "desc";
