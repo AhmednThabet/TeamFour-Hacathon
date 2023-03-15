@@ -18,6 +18,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       withoutHelperText = false,
       labelClassName,
       focusableLabel = false,
+
       ...rest
     },
     ref
@@ -82,6 +83,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             ref={ref}
             {...rest}
           />
+
           {inputEndIcon && (
             <span className={`${classNames.icon} ${classNames.endIcon}`}>
               {inputEndIcon}
