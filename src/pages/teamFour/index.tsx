@@ -1,10 +1,12 @@
-import { Recipient } from "features/Hacathon-TeamFour/components/Recipient/Recipient";
-import { Card } from "components";
+// import WithdraWPrevieW from "features/Hacathon-TeamFour/components/withdrawPreview";
+
+import Bank from "./Balance/banck";
+
 const Index = () => {
   return (
-    <Card className="min-w-[50%] flex flex-col items-center relative">
-      <Recipient />
-    </Card>
+    <>
+      <Bank />
+    </>
   );
 };
 

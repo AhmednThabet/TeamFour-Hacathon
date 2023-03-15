@@ -23,11 +23,11 @@ export const API_SERVICES_URLS = {
   },
   WITHDROW: {
     ADDRECIPINT: "/recipient/list?offset=0&limit=5",
-  withdraw: {
-    OFFICE_LIST: "/withdraw/office-list?office=&limit=10",
-  },
-  } as const ;
-
+    withdraw: {
+      OFFICE_LIST: "/withdraw/office-list?office=&limit=10",
+    },
+  } as const,
+};
 export const COOKIES_KEYS = {
   currentUser: "currentUser",
 } as const;

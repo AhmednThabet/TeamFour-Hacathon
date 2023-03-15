@@ -1,6 +1,13 @@
 import { Dialog } from "@headlessui/react";
 import EditrecipientList from "./EditrecipientList";
-const Editrecipent = ({ isOpenEdit, setIsOpenEdit, data }: any) => {
+
+const Editrecipent = ({
+  isOpenEdit,
+  setIsOpenEdit,
+  data,
+  selectedPerson,
+  setSelectedPerson,
+}: any) => {
   return (
     <div>
       <Dialog
@@ -15,6 +22,8 @@ const Editrecipent = ({ isOpenEdit, setIsOpenEdit, data }: any) => {
             <EditrecipientList
               recipients={data}
               setIsOpenEdit={setIsOpenEdit}
+              selectedPerson={selectedPerson}
+              setSelectedPerson={setSelectedPerson}
             />
           </Dialog.Panel>
         </div>

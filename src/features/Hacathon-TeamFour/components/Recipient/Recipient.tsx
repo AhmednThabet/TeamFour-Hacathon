@@ -9,10 +9,10 @@ import { PlusIcon, ChevronDownIcon } from "lib/@heroicons";
 
 import useSWR from "swr";
 import { Card, Select, Input } from "components";
-import RecipientOption from "./RecipientOption";
-import Addrecipent from "./Addrecipent";
-import RecipientLoading from "./RecipientLoading";
-import Editrecipent from "./Editrecipent";
+import RecipientOption from "./RecipientElemnts/RecipientOption";
+import Addrecipent from "./Addrecipient/Addrecipent";
+import RecipientLoading from "./RecipientElemnts/RecipientLoading";
+import Editrecipent from "./Editreciepient/Editrecipent";
 
 export const Recipient = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -41,10 +41,12 @@ export const Recipient = () => {
     setSelectedPerson(data && data?.data.recipients[0]);
   }, [data]);
   return (
-    <Card className="w-[400px] relative">
+    <div className="w-full relative">
       <Editrecipent
         isOpenEdit={isEditOpen}
         setIsOpenEdit={setIsEditOpen}
+        selectedPerson={selectedPerson}
+        setSelectedPerson={setSelectedPerson}
         data={data && data.data.recipients}
       />
       <button
@@ -85,7 +87,7 @@ export const Recipient = () => {
         {<PlusIcon height={20} width={20} />}
         <p>Add Recipient</p>{" "}
       </div>
-    </Card>
+    </div>
   );
 };
 
