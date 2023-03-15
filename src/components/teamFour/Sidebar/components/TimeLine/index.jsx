@@ -6,7 +6,7 @@ export const TimeLine = ({ data = [] }) => {
   let heightNonActiveLine = Math.floor(
     ((data.length - 2) / (data.length - 1.3)) * 100
   );
-  if (data.length <= 1) {
+  if (data.length < 2) {
     heightActiveLine = "";
     heightNonActiveLine = "";
   }

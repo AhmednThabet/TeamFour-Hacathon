@@ -13,17 +13,17 @@ const Index = () => {
     setIsShow((prev) => !prev);
   }
 
-  // const [id, setId] = useState("640f5cb778fd73b40d217e37");
-
   const [content, setContent] = useState(null);
 
   const { isLoading, fetch } = useFetch();
 
   function handleClickOnTable(id) {
     handleShow(true);
-    fetch(API.GetWithdrawalRequestDetails(id)).then((data) => {
-      setContent(data.withdraw);
-    });
+    fetch(API.GetWithdrawalRequestDetails(id), API.getOptions()).then(
+      (data) => {
+        setContent(data.withdraw);
+      }
+    );
   }
 
   return (

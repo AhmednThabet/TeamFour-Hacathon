@@ -3,6 +3,7 @@ import { Aside, Button, Loading } from "components";
 import { useEffect, useState } from "react";
 import { useFetch } from "hooks";
 import { API } from "../API";
+import useMessage from "../useMessage";
 
 function format(data) {
   let finshData = {
@@ -48,118 +49,6 @@ function format(data) {
   return finshData;
 }
 
-const bankExample = {
-  _id: "640f895676001ef82fbff621",
-  amount: 300,
-  bank: {
-    _id: "640f300b6f45e615f917e8ee",
-    accountName: "Heba Skhail",
-    accountNumber: "2017201423132",
-    bankBranch: "003-Al-Naser",
-    bankName: "Bank of Palestine",
-  },
-  typeWithdraw: "bank",
-  status: "ready",
-  createdAt: "2023-03-13T20:36:38.526Z",
-  updatedAt: "2023-03-13T20:36:38.526Z",
-  history: [
-    {
-      _id: "640f895776001ef82fbff62c",
-      type: "withdraw",
-      action: "request bank",
-      status: "pending",
-      createdBy: "63e104aa8bba2cb3f754d7db",
-      createdAt: "2023-03-13T20:36:39.697Z",
-      updatedAt: "2023-03-13T20:36:39.697Z",
-    },
-  ],
-};
-
-const cashExample = {
-  _id: "640f5cb778fd73b40d217e37",
-  amount: 6000,
-  office: {
-    _id: "6310a930d74275d6cdd15be3",
-    name: "مكتب الدانا",
-    address: "غزة-شارع الشهداء، مقابل برج فلسطين",
-    fees: 1,
-  },
-  typeWithdraw: "cash",
-  status: "completed",
-  recipient: {
-    _id: "640f135aee0733bd4a2a8d4e",
-    name: "Heba Skhail Recipient 1",
-    mobile: "+970597039224",
-  },
-  createdAt: "2023-03-13T17:26:15.676Z",
-  updatedAt: "2023-03-13T17:26:15.676Z",
-  history: [
-    {
-      _id: "640f5cb878fd73b40d217e42",
-      type: "withdraw",
-      action: "request cash",
-      status: "pending",
-      createdBy: "63e104aa8bba2cb3f754d7db",
-      createdAt: "2023-03-13T17:26:16.222Z",
-      updatedAt: "2023-03-13T17:26:16.222Z",
-    },
-    {
-      _id: "640f5cb878fd73b40d217e42",
-      type: "withdraw",
-      action: "request cash",
-      status: "pending",
-      createdBy: "63e104aa8bba2cb3f754d7db",
-      createdAt: "2023-03-13T17:26:16.222Z",
-      updatedAt: "2023-03-13T17:26:16.222Z",
-    },
-    {
-      _id: "640f5cb878fd73b40d217e42",
-      type: "withdraw",
-      action: "request cash",
-      status: "pending",
-      createdBy: "63e104aa8bba2cb3f754d7db",
-      createdAt: "2023-03-13T17:26:16.222Z",
-      updatedAt: "2023-03-13T17:26:16.222Z",
-    },
-    {
-      _id: "640f5cb878fd73b40d217e42",
-      type: "withdraw",
-      action: "request cash",
-      status: "pending",
-      createdBy: "63e104aa8bba2cb3f754d7db",
-      createdAt: "2023-03-13T17:26:16.222Z",
-      updatedAt: "2023-03-13T17:26:16.222Z",
-    },
-    {
-      _id: "640f5cb878fd73b40d217e42",
-      type: "withdraw",
-      action: "request cash",
-      status: "pending",
-      createdBy: "63e104aa8bba2cb3f754d7db",
-      createdAt: "2023-03-13T17:26:16.222Z",
-      updatedAt: "2023-03-13T17:26:16.222Z",
-    },
-    {
-      _id: "640f5cb878fd73b40d217e42",
-      type: "withdraw",
-      action: "request cash",
-      status: "pending",
-      createdBy: "63e104aa8bba2cb3f754d7db",
-      createdAt: "2023-03-13T17:26:16.222Z",
-      updatedAt: "2023-03-13T17:26:16.222Z",
-    },
-    {
-      _id: "640f5cb878fd73b40d217e42",
-      type: "withdraw",
-      action: "request cash",
-      status: "pending",
-      createdBy: "63e104aa8bba2cb3f754d7db",
-      createdAt: "2023-03-13T17:26:16.222Z",
-      updatedAt: "2023-03-13T17:26:16.222Z",
-    },
-  ],
-};
-
 function getAction(status) {
   const typeStatus = status.toLowerCase();
   switch (typeStatus) {
@@ -178,7 +67,7 @@ function getAction(status) {
     case "completed":
       return {
         text: "Report a Problem",
-        action: () => console.log("Report a Problem\n the API is not make"),
+        action: () => "Report a Problem\n the API is not make",
         disabled: false,
       };
     case "sent":
@@ -196,12 +85,38 @@ export const Sidebar = ({ isShow = false, setIsShow, isLoading, data }) => {
     setIsShow(false);
   }
 
+  const { message, setIsOpen, setMessage } = useMessage();
+  const {
+    message: requestMessage,
+    setIsOpen: setIsOpenRequset,
+    setMessage: setRequestMessage,
+  } = useMessage();
+
   function request(url) {
-    console.log("request", url);
+    setRequestMessage({
+      children: <p className="break-words">{url}</p>,
+      closeButton: "Close",
+      classNameActionButton: " !bg-[#D84242] text-white hover:!bg-[#D84242] ",
+      className: "px-6 pt-4 w-[300px] text-center",
+    });
+    setIsOpenRequset(true);
   }
 
   const content = !isLoading && data && format(data);
-  const action = content && getAction(content?.status);
+  const action = content && getAction(content?.status, fetch);
+
+  useEffect(() => {
+    setMessage({
+      children: <p>Are you sure you want to {action?.text}?</p>,
+      closeButton: "Close",
+      actionButton: "Delete",
+      action: () => request(action.action(content?.id)),
+      actionWithClose: true,
+      classNameActionButton: " !bg-[#D84242] text-white hover:!bg-[#D84242] ",
+      className: "px-6 pt-4 w-[300px]",
+    });
+  }, [data]);
+
   return (
     <Aside
       isShow={isShow}
@@ -209,6 +124,8 @@ export const Sidebar = ({ isShow = false, setIsShow, isLoading, data }) => {
       title="Withdrawal"
       className="  py-2 px-[16px] "
     >
+      {message}
+      {requestMessage}
       <div className="flex-grow flex flex-col justify-between gap-4">
         {isLoading || !content ? (
           <div className="flex flex-col justify-between h-full w-[300px]">
@@ -228,7 +145,7 @@ export const Sidebar = ({ isShow = false, setIsShow, isLoading, data }) => {
               <Interstions data={content.interstions} />
             </div>
             <Button
-              onClick={() => request(action.action(content.id))}
+              onClick={() => setIsOpen(true)}
               className="bg-white !text-black hover:!bg-white shadow-sm border border-[#E2E2E2] capitalize  "
               disabled={action.disabled && true}
             >

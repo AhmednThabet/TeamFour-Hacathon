@@ -3,7 +3,7 @@ import { Card } from "components";
 
 export const Details = ({ data }) => {
   return (
-    <Card className="shadow-sm text-sm">
+    <Card className="shadow-sm text-xs md:text-sm">
       <h4 className="font-semibold">Details</h4>
       <div>
         <p className="flex justify-between items-center">
