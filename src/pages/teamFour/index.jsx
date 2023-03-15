@@ -6,55 +6,53 @@ import IconButton from "components/IconButton";
 import { Download } from "../../lib/@heroicons/index";
 import Search from "components/Table/Search";
 import axios from "axios";
-// import Table from './UserTable';
 import Balnce from "layouts/Balnce";
 import SideBar from "layouts/SideBar";
 import { getAuthorizationHeader } from "utils";
+import { Sidebar } from "../../components";
 
-const headers: { key: SortKeys; label: string }[] = [
-  { key: "name", label: "Name" },
-  { key: "date", label: "Date" },
-  { key: "amount", label: "Amount" },
-  { key: "status", label: "Status" },
-];
+import { API } from "../../components/teamFour/API";
+import { useFetch } from "hooks";
 
-import { Recipient } from "features/Hacathon-TeamFour/components/Recipient/Recipient";
-import { Card } from "components";
-const Index = () => {
-  return (
-    <Card className="min-w-[50%] flex flex-col items-center relative">
-      <Recipient />
-    </Card>
-  );
-};
-
-// ];
-export const TableWidthrow = ({ classname }: any) => {
-  const [search, setSearch] = useState("");
-  const [data, setData] = useState([]);
+export const TableWidthrow = ({ classname }) => {
   const Authorization = getAuthorizationHeader();
-  const token = Authorization.Authorization;
+
+  const [isShow, setIsShow] = useState(false);
+
+  const { data: sideBarInfo, isLoading, fetch } = useFetch();
+
+  function handleClickOnTable(id) {
+    setIsShow(true);
+    fetch(API.GetWithdrawalRequestDetails(id), API.getOptions());
+  }
 
   return (
     <NoSsr>
       <div>
-        <div
-          className="flex w-full justify-between  md:h-[75vh]
-    `"
-        >
+        <div className="flex w-full  justify-between  md:h-[75vh]">
           <SideBar />
 
-          <div className={classname + "  min-w-[700px]  ml-[180px]    "}>
+          <div className={classname + "  min-w-[800px]  ml-[180px]    "}>
             <div>
               <Table
                 fetchUrl="withdraw/list"
                 columns={["Name Date", "", "Amount", "Status"]}
+                onTableClick={handleClickOnTable}
               />
             </div>
           </div>
         </div>
 
         <Balnce />
+
+        <div>
+          <Sidebar
+            isShow={isShow}
+            setIsShow={setIsShow}
+            isLoading={isLoading}
+            data={sideBarInfo?.withdraw}
+          />
+        </div>
       </div>
     </NoSsr>
   );

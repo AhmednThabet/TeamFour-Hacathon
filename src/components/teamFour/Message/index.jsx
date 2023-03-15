@@ -62,7 +62,7 @@ export function Message({
                       {closeButton && (
                         <Button
                           onClick={closeModal}
-                          className={`bg-white text-black border !p-2 w-full hover:bg-gray-100 rounded-md ${classNameCloseButton}`}
+                          className={`!bg-white text-black border !p-2 w-full hover:bg-gray-100 rounded-md ${classNameCloseButton}`}
                         >
                           {closeButton}
                         </Button>

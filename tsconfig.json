@@ -16,6 +16,6 @@
     "incremental": true,
     "baseUrl": "src"
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/pages/teamFour/index.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/pages/teamFour/index.jsx", "src/pages/index.jsx"],
   "exclude": ["node_modules"]
 }

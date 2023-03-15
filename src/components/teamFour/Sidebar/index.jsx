@@ -118,16 +118,17 @@ export const Sidebar = ({ isShow = false, setIsShow, isLoading, data }) => {
   const { response, fetch } = useFetch();
   function request(action, url) {
     let message = "Error Message";
-    const [link, options] = url;
-    if (action.hasRequestUrl) {
-      fetch(link, options)
-        .then((data) => {
-          console.log(data);
-        })
-        .catch((err) => (message = err));
-    } else {
-      message = url;
-    }
+    // const [link, options] = url;
+    // if (action.hasRequestUrl) {
+    //   fetch(link, options)
+    //     .then((data) => {
+    //       console.log(data);
+    //     })
+    //     .catch((err) => (message = err));
+    // } else {
+    //   message = url;
+    // }
+    message = url[0];
     setRequestMessage({
       children: <p className="break-words">{message}</p>,
       closeButton: "Close",
@@ -141,43 +142,45 @@ export const Sidebar = ({ isShow = false, setIsShow, isLoading, data }) => {
   }
 
   return (
-    <Aside
-      isShow={isShow}
-      setIsShow={handleClose}
-      title="Withdrawal"
-      className="  py-2 px-[16px] "
-    >
+    <>
+      <Aside
+        isShow={isShow}
+        setIsShow={handleClose}
+        title="Withdrawal"
+        className="  py-2 px-[16px] "
+      >
+        <div className="flex-grow flex flex-col justify-between gap-4">
+          {isLoading || !content ? (
+            <div className="flex flex-col justify-between h-full w-[300px]">
+              <div className="flex flex-col gap-4">
+                {[1, 2, 3, 4].map((item) => (
+                  <Loading className="bg-white p-4 w-full " key={item} />
+                ))}
+              </div>
+              <Loading className="bg-white  !h-[46px] overflow-hidden" />
+            </div>
+          ) : (
+            <>
+              <div className=" flex flex-col  gap-4 ">
+                <Header data={content} />
+                <Details data={content} />
+                <TimeLine data={content?.history} />
+                <Interstions data={content.interstions} />
+              </div>
+              <Button
+                onClick={() => setIsOpen(true)}
+                className="!bg-white !text-black hover:!bg-white shadow-sm border border-[#E2E2E2] capitalize  "
+                disabled={action.disabled && true}
+              >
+                {action.text}
+              </Button>
+            </>
+          )}
+        </div>
+      </Aside>
       {message}
       {requestMessage}
-      <div className="flex-grow flex flex-col justify-between gap-4">
-        {isLoading || !content ? (
-          <div className="flex flex-col justify-between h-full w-[300px]">
-            <div className="flex flex-col gap-4">
-              {[1, 2, 3].map((item) => (
-                <Loading className="bg-white p-4 w-full " key={item} />
-              ))}
-            </div>
-            <Loading className="bg-white  !h-[46px] overflow-hidden" />
-          </div>
-        ) : (
-          <>
-            <div className=" flex flex-col  gap-4 ">
-              <Header data={content} />
-              <Details data={content} />
-              <TimeLine data={content?.history} />
-              <Interstions data={content.interstions} />
-            </div>
-            <Button
-              onClick={() => setIsOpen(true)}
-              className="bg-white !text-black hover:!bg-white shadow-sm border border-[#E2E2E2] capitalize  "
-              disabled={action.disabled && true}
-            >
-              {action.text}
-            </Button>
-          </>
-        )}
-      </div>
-    </Aside>
+    </>
   );
 };
 

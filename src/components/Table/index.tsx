@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Search from "./Search";
-import { Card, Skeleton } from "components";
+import { Card, Skeleton, Status } from "components";
 import { API_ENDPOINT } from "data";
 import { getAuthorizationHeader } from "utils";
 import { ArrowsUpDownIcon } from "@heroicons/react/24/outline";
@@ -18,6 +18,7 @@ export const Table = ({
   fetchUrl,
   withoutSearch = false,
   className = "",
+  onTableClick = console.log,
 }: any) => {
   const Authorization = getAuthorizationHeader();
   const token = Authorization.Authorization;
@@ -78,25 +79,28 @@ export const Table = ({
     <div className="mt-8 ">
       <div className="flex flex-row justify-between ">
         <div className="flex flex-row justify-between">
-        <div >
-          <Search setSearch={setSearch} />
-        </div> 
-      <div className="bg-white shadow-md ml-[80px] rounded text-[12px] text-[#4375FF] hover:cursor-pointer text-center m-0 h-10 ">  <Link
-            href={URL_PATHS.HOME}
-          > 
-           <IconButton className=" ml-1 p-2 ">
-            <span className="flex text-[12px]">
-              <Download className=" flex flex-start   -ml-1 rounded-sm !text-[#4375FF]  !bg-[#F3F6FF] w-5 h-5  hover:!text-[#F3F6FF] hover:!bg-[#4375FF]" />
-            </span>
-          </IconButton><span className="-mt[20px] mr-[20px]">Withdraw</span> </Link> </div>
-      <div className="ml-[40px]" ><SearchFilter/></div>
-      </div>
-       <div className="flex flex-row   max-w-[907px] ml-[100px] mr-[300px] hover:cursor-pointer px-2 max-h-[40px]">
+          <div>
+            <Search setSearch={setSearch} />
+          </div>
+          <div className="bg-white shadow-md ml-[80px] rounded text-[12px] text-[#4375FF] hover:cursor-pointer text-center m-0 h-10 ">
+            {" "}
+            <Link href={URL_PATHS.HOME}>
+              <IconButton className=" ml-1 p-2 ">
+                <span className="flex text-[12px]">
+                  <Download className=" flex flex-start   -ml-1 rounded-sm !text-[#4375FF]  !bg-[#F3F6FF] w-5 h-5  hover:!text-[#F3F6FF] hover:!bg-[#4375FF]" />
+                </span>
+              </IconButton>
+              <span className="-mt[20px] mr-[20px]">Withdraw</span>{" "}
+            </Link>{" "}
+          </div>
+          <div className="ml-[40px]">
+            <SearchFilter />
+          </div>
         </div>
-        
+        <div className="flex flex-row   max-w-[907px] ml-[100px] mr-[300px] hover:cursor-pointer px-2 max-h-[40px]"></div>
       </div>
       {/* {!withoutSearch && <Search setSearch={setSearch} />} */}
-      <Card className="max-w-[600px]">
+      <Card className="max-w-[800px]">
         <table className="w-full text-sm">
           <thead className="bg-white text-[#9E9E9E] mb-4 text-sm font-normal px-4	">
             <tr>
@@ -130,7 +134,7 @@ export const Table = ({
                   <tr
                     key={index}
                     className="hover:bg-gray-light hover:cursor-pointer text-sm"
-                    onClick={() => console.log(item._id)}
+                    onClick={() => onTableClick(item._id)}
                   >
                     <td className="border-b-2 text-sm px-4 py-2">
                       {item.office?.name} <br />
@@ -145,7 +149,10 @@ export const Table = ({
                       ${item.amount}
                     </td>
                     <td className="border-b-2 text-sm px-4 py-2">
-                      <StatusMap status={item.status} />
+                      <Status
+                        status={item.status}
+                        className="!bg-transparent"
+                      />
                     </td>
                   </tr>
                 );
@@ -179,21 +186,5 @@ export const Table = ({
     </div>
   );
 };
-export const StatusMap = ({ status }: any) => {
-  const [color, setColor] = useState("black");
 
-  useEffect(() => {
-    if (status === "pending") {
-      setColor("#DDAC54");
-    } else if (status === "ready") {
-      setColor("#4375FF");
-    } else if (status === "canceled") {
-      setColor("#BEC2C6");
-    } else {
-      setColor("");
-    }
-  }, [status]);
-
-  return <div style={{ color: color }}>{status}</div>;
-};
 export default Table;
