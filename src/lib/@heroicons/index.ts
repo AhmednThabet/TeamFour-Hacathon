@@ -8,8 +8,31 @@ import {
   XMarkIcon as XMarkIconMini,
   InformationCircleIcon as InformationCircleIconMini,
   CheckIcon as CheckIconMini,
+  PlusIcon as Plus,
+  Bars3CenterLeftIcon as MenuBar,
 } from "@heroicons/react/20/solid";
-import { InformationCircleIcon } from "@heroicons/react/24/outline";
+
+
+import {
+  InformationCircleIcon,
+  PlusIcon,
+  ChevronDownIcon,
+  XMarkIcon,
+  TrashIcon,
+  PencilIcon,
+  HomeIcon as Homeicon,
+  QuestionMarkCircleIcon as Helpicon,
+  UserPlusIcon as Contactsicon,
+  BanknotesIcon as Withdrawicon,
+  DocumentIcon as Invoicesicon,
+  Cog8ToothIcon as Settings,
+  ArrowRightOnRectangleIcon as LogOuticon,
+  ArrowDownTrayIcon as Download,
+  MagnifyingGlassIcon as MagnifyingGlassIcon,
+  AdjustmentsHorizontalIcon as AdjustmentsHorizontalIcon,
+  ArrowsUpDownIcon as ArrowsUpDownIcon,
+  UserCircleIcon as User,
+  PaperAirplaneIcon as Send,} from "@heroicons/react/24/outline";
 
 export {
   ErrorIconMini,
@@ -22,4 +45,24 @@ export {
   InformationCircleIconMini,
   InformationCircleIcon,
   CheckIconMini,
+  PlusIcon,
+  ChevronDownIcon,
+  XMarkIcon,
+  TrashIcon,
+  PencilIcon,
+  Homeicon,
+  Helpicon,
+  Contactsicon,
+  Withdrawicon,
+  Invoicesicon,
+  Settings,
+  LogOuticon,
+  Download,
+  User,
+  Send,
+  Plus,
+  MenuBar,
+  MagnifyingGlassIcon,
+  AdjustmentsHorizontalIcon,
+  ArrowsUpDownIcon,
 };
