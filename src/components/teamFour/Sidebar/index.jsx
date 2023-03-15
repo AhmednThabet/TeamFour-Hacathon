@@ -55,35 +55,46 @@ function getAction(status) {
     case "pending":
       return {
         text: "Cancel Withdrawal",
-        action: (id) => API.cancelWithdrawRequest(id),
+        action: (id) => [API.cancelWithdrawRequest(id), API.getOptions("PUT")],
         disabled: false,
+        hasRequestUrl: true,
       };
     case "canceled":
       return {
         text: "Confirm Receipt",
-        action: (id) => API.confrimWithdrawRequest(id),
+        action: () => {},
         disabled: true,
+        hasRequestUrl: false,
       };
     case "completed":
       return {
         text: "Report a Problem",
         action: () => "Report a Problem\n the API is not make",
         disabled: false,
+        hasRequestUrl: false,
       };
     case "sent":
     case "ready":
       return {
         text: "Confirm Receipt",
-        action: (id) => API.confrimWithdrawRequest(id),
+        action: (id) => [
+          API.confrimWithdrawRequest(id),
+          API.getOptions(
+            "PUT",
+            JSON.stringify({
+              isConfirmed: true,
+            })
+          ),
+        ],
         disabled: false,
+        hasRequestUrl: true,
       };
   }
 }
 
 export const Sidebar = ({ isShow = false, setIsShow, isLoading, data }) => {
-  function handleClose() {
-    setIsShow(false);
-  }
+  const content = !isLoading && data && format(data);
+  const action = content && getAction(content?.status);
 
   const { message, setIsOpen, setMessage } = useMessage();
   const {
@@ -92,30 +103,42 @@ export const Sidebar = ({ isShow = false, setIsShow, isLoading, data }) => {
     setMessage: setRequestMessage,
   } = useMessage();
 
-  function request(url) {
+  useEffect(() => {
+    setMessage({
+      children: <p>Are you sure you want to {action?.text}?</p>,
+      closeButton: "Close",
+      actionButton: "Delete",
+      action: () => request(action, action.action(content?.id)),
+      actionWithClose: true,
+      classNameActionButton: " !bg-[#D84242] text-white hover:!bg-[#D84242] ",
+      className: "px-6 pt-4 w-[300px]",
+    });
+  }, [data]);
+
+  const { response, fetch } = useFetch();
+  function request(action, url) {
+    let message = "Error Message";
+    const [link, options] = url;
+    if (action.hasRequestUrl) {
+      fetch(link, options)
+        .then((data) => {
+          console.log(data);
+        })
+        .catch((err) => (message = err));
+    } else {
+      message = url;
+    }
     setRequestMessage({
-      children: <p className="break-words">{url}</p>,
+      children: <p className="break-words">{message}</p>,
       closeButton: "Close",
       classNameActionButton: " !bg-[#D84242] text-white hover:!bg-[#D84242] ",
       className: "px-6 pt-4 w-[300px] text-center",
     });
     setIsOpenRequset(true);
   }
-
-  const content = !isLoading && data && format(data);
-  const action = content && getAction(content?.status, fetch);
-
-  useEffect(() => {
-    setMessage({
-      children: <p>Are you sure you want to {action?.text}?</p>,
-      closeButton: "Close",
-      actionButton: "Delete",
-      action: () => request(action.action(content?.id)),
-      actionWithClose: true,
-      classNameActionButton: " !bg-[#D84242] text-white hover:!bg-[#D84242] ",
-      className: "px-6 pt-4 w-[300px]",
-    });
-  }, [data]);
+  function handleClose() {
+    setIsShow(false);
+  }
 
   return (
     <Aside

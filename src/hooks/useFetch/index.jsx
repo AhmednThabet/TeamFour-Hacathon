@@ -12,8 +12,11 @@ export function useFetch() {
 
       const response = await fetch(url, options);
       const data = await response.json();
+
       setFinalData(data.data);
       temp = data.data;
+      console.log("data ===>", data);
+
       setIsLoading(false);
       setIsError(false);
     } catch {

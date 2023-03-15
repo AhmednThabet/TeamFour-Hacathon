@@ -1,30 +1,38 @@
 import { Button } from "components";
 import React, { useEffect, useState } from "react";
-import Sidebar from "../../components/teamFour/Sidebar";
 import { API } from "../../components/teamFour/API";
 import { useFetch } from "hooks";
+import { InfoMessage, Sidebar } from "../../components";
+import { CheckIcon } from "../../components/svg";
+import useInfoMessage from "../../components/teamFour/useInfoMessage";
 
 const Index = () => {
   const [isShow, setIsShow] = useState(false);
-  function handleShow(flag) {
-    setIsShow(flag);
+
+  const { data, isLoading, fetch } = useFetch();
+
+  function handleClickOnTable(id) {
+    setIsShow(true);
+    fetch(API.GetWithdrawalRequestDetails(id), API.getOptions());
   }
+
   function handleOpen() {
     setIsShow((prev) => !prev);
   }
+  // const [content, setContent] = useState(null);
 
-  const [content, setContent] = useState(null);
-
-  const { isLoading, fetch } = useFetch();
-
-  function handleClickOnTable(id) {
-    handleShow(true);
-    fetch(API.GetWithdrawalRequestDetails(id), API.getOptions()).then(
-      (data) => {
-        setContent(data.withdraw);
-      }
-    );
-  }
+  const { infoMessage, setIsShow: setIsShowInfoMessage } = useInfoMessage({
+    children: (
+      <>
+        <span className="text-transparent">
+          <CheckIcon />
+        </span>
+        <p>Some Text Here</p>
+      </>
+    ),
+    className: "bg-[#F2FFF3] gap-5 ",
+  });
+  console.log(setIsShowInfoMessage);
 
   return (
     <div>
@@ -41,10 +49,12 @@ const Index = () => {
       <Button onClick={() => handleOpen()}>Show Drop</Button>
       <Sidebar
         isShow={isShow}
-        setIsShow={handleShow}
+        setIsShow={setIsShow}
         isLoading={isLoading}
-        data={content}
+        data={data?.withdraw}
       />
+      {infoMessage}
+      <button onClick={() => setIsShowInfoMessage(true)}>Show</button>
     </div>
   );
 };
