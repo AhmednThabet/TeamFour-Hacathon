@@ -12,7 +12,6 @@ import { Button } from "components";
 
 const Home = ({ classname }) => {
   const { user } = useCurrentUser();
-  const logout = useLogout();
   const [isBank, setIsBank] = useState(false);
 
   const {
@@ -131,23 +130,3 @@ Home.mainLayoutProps = {
 };
 
 export default Home;
-{
-  /* <Button onClick={logout}>Logout</Button> */
-}
-
-/* <div className="mb-3 flex flex-row justify-between  -mx-2 ">
-            <div className="px-2">
-                <label htmlFor="type1" className="flex  justify-between  shadow-sm items-center focus:ring-2  focus:outline-none hover:border-blue-500 active:border-blue-500 focus:border-blue-500 cursor-pointer px-3 py-2 rounded-md border-gray-300 border-2">
-                    <input type="radio" className=" h-3 w-3  form-radio text-gray-800 bg-white visited:border-blue-500  border-gray-300 focus:ring-2 focus:ring-gray-800 ml-2" name="type" id="type1" checked/>
-                   <span className="text-[#707070] focus:text-gray-800 active:font-bold visited:text-gray-800 focus:font-bold focus:text-md ml-4 mr-8 hover:text-[#000000] hover:font-bold">Cash</span> 
-                    <Cash className="h-8 px-4 ml-4"/> 
-                </label>
-            </div>
-            <div className="px-2  ">
-                <label htmlFor="type2" className="flex justify-between items-center rounded-md  focus:border-blue-500 focus:outline-none cursor-pointer px-4 py-2 active:border-blue-500 hover:border-blue-500 border-gray-300 border-2">
-                    <input type="radio" className=" h-3 w-3  shadow-sm form-radio text-gray-800 visited:border-blue-500  bg-white border-gray-300 focus:ring-2 focus:ring-gray-800 " name="type" id="type2"/>
-                    <span  className="text-[#707070] active:font-bold  focus:text-gray-800 visited:text-gray-800 focus:text-md ml-4 mr-8 focus:font-bold  hover:text-[#000000] hover:font-bold">Bank</span>
-                    <Bank className="h-8 ml-3"/> 
-                </label>
-            </div>
-        </div> */
