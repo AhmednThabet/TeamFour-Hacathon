@@ -1,11 +1,12 @@
-import { Recipient } from "features/Hacathon-TeamFour/components/Recipient/Recipient";
+// import WithdraWPrevieW from "features/Hacathon-TeamFour/components/withdrawPreview";
+
+import Bank from "./Balance/banck";
 
 const Index = () => {
   return (
-    <div>
-      Test TeamFour
-      <Recipient />
-    </div>
+    <>
+      <Bank />
+    </>
   );
 };
 
