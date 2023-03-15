@@ -11,7 +11,15 @@ import {
   PlusIcon as Plus,
   Bars3CenterLeftIcon as MenuBar,
 } from "@heroicons/react/20/solid";
-import {   InformationCircleIcon,
+
+
+import {
+  InformationCircleIcon,
+  PlusIcon,
+  ChevronDownIcon,
+  XMarkIcon,
+  TrashIcon,
+  PencilIcon,
   HomeIcon as Homeicon,
   QuestionMarkCircleIcon as Helpicon,
   UserPlusIcon as Contactsicon,
@@ -36,6 +44,11 @@ export {
   InformationCircleIconMini,
   InformationCircleIcon,
   CheckIconMini,
+  PlusIcon,
+  ChevronDownIcon,
+  XMarkIcon,
+  TrashIcon,
+  PencilIcon,
   Homeicon,
   Helpicon,
   Contactsicon,
