@@ -3,7 +3,7 @@ import React from "react";
 const Office = (data: any) => {
   if (data) {
     return (
-      <div className="flex w-full flex-col p-5 border-b-[#E2E2E2] border-b-2 cursor-pointer ">
+      <div className="flex w-full flex-col p-5 border-b-[#E2E2E2] border-b-2 cursor-pointer min-w-[550px]">
         <div className=" flex w-full justify-between flex-row-reverse">
           <h2 className=" font-bold">{`${data.data.address.split("-")[0]} - ${
             data.data.name

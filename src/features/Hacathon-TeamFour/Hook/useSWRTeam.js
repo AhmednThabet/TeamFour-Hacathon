@@ -13,7 +13,7 @@ export const useSWRTeam = (url) => {
       })
       .then((res) => res.data);
 
-  const { data, error } = useSWR(
+  const { data, error, isLoading } = useSWR(
     [
       url,
       "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoiNjNlMTA0YWE4YmJhMmNiM2Y3NTRkN2RiIiwicm9sZSI6MH0sImV4cCI6MTY3ODkwMDE4MiwiaWF0IjoxNjc4ODEzNzgyfQ.lHs8OzxSKzPn7Y3EV_aLZkkG3x2j_TSVaAJVFAZdsUk",
@@ -21,5 +21,5 @@ export const useSWRTeam = (url) => {
     fetcher
   );
 
-  return { data, error };
+  return { data, error, isLoading };
 };

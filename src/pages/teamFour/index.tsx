@@ -1,5 +1,5 @@
 import React from "react";
-import Team from "./team";
+import Team from "./Team";
 const teamFour = () => {
   return (
     <div>
