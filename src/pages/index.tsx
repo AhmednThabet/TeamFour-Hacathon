@@ -9,8 +9,11 @@ import { ErrorIconMini } from "lib/@heroicons";
 import { Tab } from "@headlessui/react";
 import useForm from "lib/react-hook-form";
 import SideBar from "layouts/SideBar";
+import { Download } from "../../lib/@heroicons/index";
+import { Button } from "components";
 const Home = ({ classname }: any) => {
   const { user } = useCurrentUser();
+  const logout = useLogout();
   const [message, setMessage] = useState(user?.balance);
   const [active, setActive] = useState(false);
   const [helpertext , setHelpertext] = useState();
@@ -165,6 +168,7 @@ Home.mainLayoutProps = {
 };
 
 export default Home;
+{/* <Button onClick={logout}>Logout</Button> */}
 {
   /* <div className="mb-3 flex flex-row justify-between  -mx-2 ">
             <div className="px-2">

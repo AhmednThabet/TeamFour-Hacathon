@@ -17,7 +17,6 @@ export const API_SERVICES_URLS = {
     COMPLETE_INVOICE: (id: string) => `/invoice/client/complete-invoice/${id}`,
     INVOICE_PREVIEW: (id: string) => `/invoice/client/preview/${id}`,
     PAYMENT_OPTIONS: (id: string) => `/invoice/client/payment-options/${id}`,
-    GET_LIST: "/team/user/list",
   },
   PAYMENT: {
     STRIPE_SESSION: "/invoice/payment/stripe/create-checkout-session",

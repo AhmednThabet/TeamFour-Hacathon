@@ -20,6 +20,9 @@ import {   InformationCircleIcon,
   Cog8ToothIcon as Settings,
   ArrowRightOnRectangleIcon as LogOuticon,
   ArrowDownTrayIcon as Download,
+  MagnifyingGlassIcon as MagnifyingGlassIcon,
+  AdjustmentsHorizontalIcon as AdjustmentsHorizontalIcon,
+  ArrowsUpDownIcon as ArrowsUpDownIcon,
   PaperAirplaneIcon as Send,} from "@heroicons/react/24/outline";
 
 export {
@@ -44,4 +47,7 @@ export {
   Send,
   Plus,
   MenuBar,
+  MagnifyingGlassIcon,
+  AdjustmentsHorizontalIcon,
+  ArrowsUpDownIcon,
 };
