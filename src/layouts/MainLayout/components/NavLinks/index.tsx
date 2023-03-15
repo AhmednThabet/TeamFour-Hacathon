@@ -1,9 +1,21 @@
 import { Link } from "components";
 import { URL_PATHS } from "data";
-
+import { User } from "lib/@heroicons";
+import { useCurrentUser } from "features/authentication";
+import { NoSsr } from "components";
 const NavLinks = () => {
+  const { user } = useCurrentUser();
   return (
-    <div >
+    <NoSsr>
+    <div className="flex flex-row text-sm text-[#707070]">
+<div> <User width={30} height={30}/>
+          </div>
+      
+<div><h2>{user?.firstName}{user?.lastName}</h2>
+            <p>{user?.email}</p></div>
+            
+        
+          
       {/* <Link
         href={URL_PATHS.HOME}
         className="px-6 transition-colors hover:text-blue"
@@ -23,6 +35,7 @@ const NavLinks = () => {
         Create
       </Link> */}
     </div>
+    </NoSsr>
   );
 };
 

@@ -8,7 +8,7 @@ export default function PopMenu({ links = [], menuButton = "options" }: any) {
       };
     
   return (
-    <div className=" shadow-md border-none py-1 bg-white rounded max-w-[88px] px-4 ">
+    <div className=" shadow-md border-none py-1 bg-white rounded max-w-[88px] px-4 -ml[300px]  ">
       <Menu as="div" className="relative inline-block text-left">
         <div>
           <Menu.Button className="flex ">{menuButton} <span className="text-[#707070]">filter</span></Menu.Button>

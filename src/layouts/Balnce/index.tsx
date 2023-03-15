@@ -2,6 +2,8 @@ import IconButton from "components/IconButton";
 import { Download, Send, Plus } from "../../lib/@heroicons/index";
 import { useCurrentUser } from "features/authentication";
 import { Button } from "components/Button";
+import { Link } from "components";
+import { URL_PATHS } from "data";
 
 export const Balnce = ({ classname }: any) => {
   const { user } = useCurrentUser();
@@ -11,7 +13,7 @@ export const Balnce = ({ classname }: any) => {
     <div
       className={
         classname +
-        " h-48  min-w-[364px] rounded-lg p-5 w-full flex -ml-18 md:w-[20%] lg:w-[30%] flex-col gap-4 bg-[#FFFFFF] "
+        " h-48  max-w-[364px] fixed right-10 top-10  mt-[80px] rounded-lg p-5 w-full flex  md:w-[20%] lg:w-[30%]  flex-col gap-4 bg-[#FFFFFF] "
       }
     >
       <h2 className="text-[#8C8C8C]">Balance</h2>
@@ -19,7 +21,11 @@ export const Balnce = ({ classname }: any) => {
         {balance[0]}.
         <span className="text-sm">{balance[1] ? balance[1] : "00"}</span>
         <IconButton className=" ml-1 p-2 ">
+        <Link
+            href={URL_PATHS.HOME}
+          > 
           <Download className="  rounded-sm !text-[#4375FF] !bg-[#F3F6FF] w-5 h-5 mr-5 hover:!text-[#F3F6FF] hover:!bg-[#4375FF]" />
+          </Link>
         </IconButton>
       </h3>
       <div className="flex gap-1 md:gap-5">

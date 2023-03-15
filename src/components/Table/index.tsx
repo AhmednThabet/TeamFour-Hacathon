@@ -7,6 +7,8 @@ import { ArrowsUpDownIcon } from "@heroicons/react/24/outline";
 import SearchFilter from "components/Table/Search/SearchFilter";
 import IconButton from "components/IconButton";
 import { Download } from "../../lib/@heroicons/index";
+import { Link } from "components";
+import { URL_PATHS } from "data";
 import axios from "axios";
 const SORT_ASC = "asc";
 const SORT_DESC = "desc";
@@ -73,39 +75,39 @@ export const Table = ({
     setTotalRows(data.length);
   }, [data]);
   return (
-    <div className="mt-8">
-      <div className="flex flex-row justify-between">
-        <div>
+    <div className="mt-8 ">
+      <div className="flex flex-row justify-between ">
+        <div className="flex flex-row justify-between">
+        <div >
           <Search setSearch={setSearch} />
-        </div>
-
-        <div className="flex flex-row shadow-md bg-white  w-[100px] ml-[300px] mr-[20px] hover:cursor-pointer  max-w-[1008px] px-2 max-h-[40px]">
-          <IconButton className=" ml-1 p-2 ">
-            <span className="flex flex text-[12px]">
-              <Download className=" flex flex-start  relative -ml-3 rounded-sm !text-[#4375FF]  !bg-[#F3F6FF] w-5 h-5  hover:!text-[#F3F6FF] hover:!bg-[#4375FF]" />
+        </div> 
+      <div className="bg-white shadow-md ml-[80px] rounded text-[12px] text-[#4375FF] hover:cursor-pointer text-center m-0 h-10 ">  <Link
+            href={URL_PATHS.HOME}
+          > 
+           <IconButton className=" ml-1 p-2 ">
+            <span className="flex text-[12px]">
+              <Download className=" flex flex-start   -ml-1 rounded-sm !text-[#4375FF]  !bg-[#F3F6FF] w-5 h-5  hover:!text-[#F3F6FF] hover:!bg-[#4375FF]" />
             </span>
-          </IconButton>
-          <span className="absolute text-[12px] text-[#4375FF] ml-7 mt-3 hover:cursor-pointer">
-            Withdraw
-          </span>
+          </IconButton><span className="-mt[20px] mr-[20px]">Withdraw</span> </Link> </div>
+      <div className="ml-[40px]" ><SearchFilter/></div>
+      </div>
+       <div className="flex flex-row   max-w-[907px] ml-[100px] mr-[300px] hover:cursor-pointer px-2 max-h-[40px]">
         </div>
-        <div className="">
-          <SearchFilter />
-        </div>
+        
       </div>
       {/* {!withoutSearch && <Search setSearch={setSearch} />} */}
-      <Card className={className}>
-        <table className="w-full text-center text-sm">
-          <thead className="bg-white text-gray-dark mb-4 text-sm">
+      <Card className="max-w-[600px]">
+        <table className="w-full text-sm">
+          <thead className="bg-white text-[#9E9E9E] mb-4 text-sm font-normal px-4	">
             <tr>
               {columns.map((column: any) => {
                 return (
                   <th
                     key={column}
                     onClick={(e) => handleSort(column)}
-                    className="py-4"
+                    className="py-4 text-sm"
                   >
-                    <p className="inline-flex items-center gap-2 cursor-pointer">
+                    <p className="inline-flex text-sm cursor-pointer">
                       {column.toUpperCase().replace("_", " ")}
                       {column === sortColumn ? (
                         <>

@@ -10,8 +10,8 @@ import {
   Settings,
   LogOuticon,
 } from "lib/@heroicons";
-import Link from "next/link";
-
+import { Link } from "components";
+import { URL_PATHS } from "data";
 export const SideBar = ({ classname }: any) => {
   return (
     <ul
@@ -32,7 +32,11 @@ export const SideBar = ({ classname }: any) => {
         </ButtonSideBar>
 
         <ButtonSideBar classname={"withdrawButton"} icon={<Withdraw />}>
+        <Link
+            href={URL_PATHS.HOME}
+          > 
           Balance
+          </Link>
         </ButtonSideBar>
 
         <ButtonSideBar classname={"contactsButton"} icon={<Contact />}>

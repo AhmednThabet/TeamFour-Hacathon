@@ -1,4 +1,3 @@
-import Balnce from "layouts/Balnce";
 import React, { useState } from "react";
 import Card from "components/Card";
 import { useCurrentUser, useLogout } from "features/authentication";
@@ -8,9 +7,10 @@ import { Bank } from "components/svg/Bank";
 import { ErrorIconMini } from "lib/@heroicons";
 import { Tab } from "@headlessui/react";
 import useForm from "lib/react-hook-form";
-import SideBar from "layouts/SideBar";
 import { Download } from "../../lib/@heroicons/index";
 import { Button } from "components";
+
+
 const Home = ({ classname }: any) => {
   const { user } = useCurrentUser();
   const logout = useLogout();
@@ -56,18 +56,6 @@ const data = input.target.value;
 
   return (
     <NoSsr>
-      <div
-        className="flex w-full justify-between  md:h-[75vh]
-    `"
-      >
-        <SideBar />
-
-        <div
-          className={
-            classname +
-            "  min-w-[700px] overflow-y-auto removescroll ml-[220px]    "
-          }
-        >
           <Card className="mb-4 mt-5 max-w-[600px] text-[#707070]">
 <span className="ml-2">Balance</span><span  className="ml-2">></span> <span>Withdraw</span>
 
@@ -154,10 +142,7 @@ const data = input.target.value;
       </Tab.Panels>
             </Tab.Group>
           </Card>{" "}
-        </div>
-
-        <Balnce />
-      </div>
+      
     </NoSsr>
   );
 };

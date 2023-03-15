@@ -7,6 +7,8 @@ import { Download } from "../../lib/@heroicons/index";
 import Search from "components/Table/Search";
 import axios from 'axios';
 // import Table from './UserTable';
+import Balnce from "layouts/Balnce";
+import SideBar from "layouts/SideBar";
 import { getAuthorizationHeader } from "utils";
 
 const headers: { key: SortKeys; label: string }[] = [
@@ -25,7 +27,7 @@ const headers: { key: SortKeys; label: string }[] = [
 //   { _id:7, address: 'Bank of Palestine',createdAt:"Yesterday",name:"Norhan Mohammed Khadr",amount: 240, status: 'pending' },
 
 // ];
-export const TableWidthrow = () => {
+export const TableWidthrow = ({ classname }: any) => {
   const [search, setSearch] = useState('');
   const [data, setData] = useState([]);
   const Authorization = getAuthorizationHeader();
@@ -33,14 +35,26 @@ export const TableWidthrow = () => {
  
   return (
     <NoSsr>
-      <div className='flex flex-col'>
- 
+      <div>
+      <div
+        className="flex w-full justify-between  md:h-[75vh]
+    `"
+      >
+        <SideBar />
 
+        <div
+          className={classname +"  min-w-[700px]  ml-[180px]    "
+          }
+        >
   <div><Table
     fetchUrl="withdraw/list"
     columns={["Name Date", "","Amount","Status"]}
   /></div>
   </div>
+  </div>
+
+<Balnce />
+</div>
     </NoSsr>
   )
 }

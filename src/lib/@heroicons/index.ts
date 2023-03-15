@@ -23,6 +23,7 @@ import {   InformationCircleIcon,
   MagnifyingGlassIcon as MagnifyingGlassIcon,
   AdjustmentsHorizontalIcon as AdjustmentsHorizontalIcon,
   ArrowsUpDownIcon as ArrowsUpDownIcon,
+  UserCircleIcon as User,
   PaperAirplaneIcon as Send,} from "@heroicons/react/24/outline";
 
 export {
@@ -44,6 +45,7 @@ export {
   Settings,
   LogOuticon,
   Download,
+  User,
   Send,
   Plus,
   MenuBar,
