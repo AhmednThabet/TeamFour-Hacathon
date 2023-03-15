@@ -13,12 +13,9 @@ export default function SearchFilter() {
 
   return (
     <div>
-        
       <PopMenu
         links={links}
-      
-      menuButton={<AdjustmentsHorizontalIcon height={24} width={24} />}
-      
+        menuButton={<AdjustmentsHorizontalIcon height={24} width={24} />}
       />
     </div>
   );

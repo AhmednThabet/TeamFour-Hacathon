@@ -1,4 +1,3 @@
-
 import { Invoice } from "components/svg/Invoice";
 import { Withdraw } from "components/svg/Withdraw";
 import { Contact } from "components/svg/Contact";
@@ -33,20 +32,18 @@ export const SideBar = ({ classname }: any) => {
         </ButtonSideBar>
 
         <ButtonSideBar classname={"withdrawButton"} icon={<Withdraw />}>
-        Balance
+          Balance
         </ButtonSideBar>
 
         <ButtonSideBar classname={"contactsButton"} icon={<Contact />}>
           <Link href="/user-manegment" prefetch={true}>
-          Contacts
+            Contacts
           </Link>
         </ButtonSideBar>
         <ButtonSideBar classname={"helpButton"} icon={<Helpicon />}>
           Help
         </ButtonSideBar>
       </div>
-
-      
     </ul>
   );
 };

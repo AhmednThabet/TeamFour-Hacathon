@@ -169,7 +169,7 @@ Home.mainLayoutProps = {
 
 export default Home;
 {/* <Button onClick={logout}>Logout</Button> */}
-{
+
   /* <div className="mb-3 flex flex-row justify-between  -mx-2 ">
             <div className="px-2">
                 <label htmlFor="type1" className="flex  justify-between  shadow-sm items-center focus:ring-2  focus:outline-none hover:border-blue-500 active:border-blue-500 focus:border-blue-500 cursor-pointer px-3 py-2 rounded-md border-gray-300 border-2">
@@ -186,11 +186,7 @@ export default Home;
                 </label>
             </div>
         </div> */
-}
 
-{
-  /* <Tab.Panels>
-        <Tab.Panel>Content 1</Tab.Panel>
-        {/* ... */
-}
-// </Tab.Panels> */}
+
+
+

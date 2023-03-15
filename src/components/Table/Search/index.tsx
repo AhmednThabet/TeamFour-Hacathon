@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { AdjustmentsHorizontalIcon, MagnifyingGlassIcon } from "lib/@heroicons";
 
 const Search = ({ setSearch: onSearchSubmit }: any) => {
- 
   const [term, setTerm] = useState("");
   const [debouncedTerm, setDebouncedTerm] = useState(term);
   useEffect(() => {
@@ -27,7 +26,8 @@ const Search = ({ setSearch: onSearchSubmit }: any) => {
       <input
         type="search"
         placeholder="search"
-        value={debouncedTerm} onChange={(e) => setDebouncedTerm(e.target.value)}
+        value={debouncedTerm}
+        onChange={(e) => setDebouncedTerm(e.target.value)}
         className="w-full border-none py-2 rounded px-12"
       />
       {/* <AdjustmentsHorizontalIcon
@@ -35,8 +35,7 @@ const Search = ({ setSearch: onSearchSubmit }: any) => {
         height={24}
         className="absolute right-4 top-4 cursor-pointer"
       /> */}
-      <div className="">
-      </div>
+      <div className=""></div>
     </div>
   );
 };
