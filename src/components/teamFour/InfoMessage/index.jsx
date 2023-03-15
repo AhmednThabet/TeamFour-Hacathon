@@ -8,7 +8,6 @@ export function InfoMessage({
   setShow,
   duration = 3000,
 }) {
-  console.log(show);
   useEffect(() => {
     if (show) {
       setTimeout(() => {

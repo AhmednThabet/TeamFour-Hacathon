@@ -32,7 +32,6 @@ const Index = () => {
     ),
     className: "bg-[#F2FFF3] gap-5 ",
   });
-  console.log(setIsShowInfoMessage);
 
   return (
     <div>
