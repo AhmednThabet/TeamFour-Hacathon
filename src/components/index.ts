@@ -22,3 +22,4 @@ export * from "./ToggleButtons";
 export * from "./teamFour";
 export * from "./Loading";
 export * from "./Table";
+export * from "./Radio";

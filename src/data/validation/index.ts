@@ -4,6 +4,7 @@ export const VALIDATION_RULES = {
   password: /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).*$/,
   isNumber: /^\d+$/,
   isCharacters: /^[a-z A-Z ء-ي]+$/, // event arabic characters allowed
+  isNumberDecimal: /^\d+(\.\d{0,2})?$/,
 } as const;
 
 export const FORM_VALIDATION = {
@@ -71,4 +72,18 @@ export const FORM_VALIDATION = {
       message: "Should be numbers",
     },
   },
+  amountWithOutDecimal: {
+    required: "Amount  is required with out Decimald",
+    pattern: {
+      value: /^\d+(\.0+)?$/,
+      message: "Invalid Amount (without . ceit) ",
+    }
+  },
+amountWithDecimal: {
+      required: "Amount  is required ",
+      pattern: {
+        value: VALIDATION_RULES.isNumberDecimal,
+        message: " Amount should be number (int or decimal) like (xx.yy) ",
+      },
+    },
 } as const;
