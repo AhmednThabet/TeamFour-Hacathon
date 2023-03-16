@@ -9,7 +9,7 @@ import IconButton from "components/IconButton";
 import { Download } from "../../lib/@heroicons/index";
 import { Link } from "components";
 import { URL_PATHS } from "data";
-
+import ReactPaginate from "react-paginate";
 import axios from "axios";
 const SORT_ASC = "asc";
 const SORT_DESC = "desc";
@@ -31,6 +31,8 @@ export const Table = ({
   const [loading, setLoading] = useState(true);
   const [rowsToShow, setRowsToShow] = useState(5);
   const [totalRows, setTotalRows] = useState(0);
+ 
+
 
   const loadMore = () => {
     setRowsToShow(rowsToShow + 5);
@@ -82,9 +84,6 @@ const sortPage = ()=>{
       setData(data?.data.withdraws);
       console.log(data?.data.withdraws);
   
-
-
-      
       setTimeout(() => {
         setLoading(false);
       }, 300);
@@ -92,7 +91,14 @@ const sortPage = ()=>{
 
     fetchData();
   }, [perPage, sortColumn, sortOrder, search, fetchUrl, token, offset]);
+  const userPerPage =5;
+const pageVisited =offset * userPerPage;
+const pageCount = Math.ceil(data.length / userPerPage);
 
+const changePage = ({ selected }:any) => {
+  setOffset(selected);
+};
+  
   useEffect(() => {
     setTotalRows(data.length);
   }, [data]);
@@ -148,7 +154,7 @@ const sortPage = ()=>{
           <tbody>
             {!loading && data?.length === 0 && <tr>No data found</tr>}
             {!loading ? (
-              data?.slice(0, rowsToShow).map((columns: any, index) => {
+            data?.slice(pageVisited, pageVisited + userPerPage).map((columns: any, index) => {
                 return (
                   <tr
                     key={index}
@@ -193,12 +199,26 @@ const sortPage = ()=>{
             )}
           </tbody>
         </table>
-       
-        {/* {rowsToShow < totalRows && (
-         <Pagination onClick={loadMore}/>
-        )} */}
+        <div>
+          
+     {/* {data} */}
+      <ReactPaginate
+        previousLabel={"<"}
+        nextLabel={">"}
+        pageCount={pageCount}
+        onPageChange={changePage}
+        containerClassName={"paginationBttns"}
+previousLinkClassName={"previousBttn"}
+nextLinkClassName={"nextBttn"}
+disabledClassName={"paginationDisabled"}
+activeClassName={"paginationActive"}
+      />
+    </div>
+
       </Card>
     </div>
+
+
   );
 };
 export const StatusMap = ({ status }: any) => {
@@ -219,3 +239,5 @@ export const StatusMap = ({ status }: any) => {
   return <div style={{ color: color }}>{status}</div>;
 };
 export default Table;
+
+// className=" flex justify-center mt-10 text-[#8C8C8C] px-11 ml-10 m-8 p-8 text-[14px] w-[80%] h-[40px] hover:text-[#4375FF] active:text-[#4375FF]"
