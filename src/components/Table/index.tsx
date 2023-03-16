@@ -9,6 +9,7 @@ import IconButton from "components/IconButton";
 import { Download } from "../../lib/@heroicons/index";
 import { Link } from "components";
 import { URL_PATHS } from "data";
+import { Sort } from "components/svg/Sort";
 import ReactPaginate from "react-paginate";
 import axios from "axios";
 const SORT_ASC = "asc";
@@ -30,9 +31,15 @@ export const Table = ({
     const [perPage, setPerPage] = useState(10);
   const [loading, setLoading] = useState(true);
   const [rowsToShow, setRowsToShow] = useState(5);
-  const [totalRows, setTotalRows] = useState(0);
- 
+  const [showSelect, setShowSelect] = useState(false);
+  const [filter, setFilter] = useState(null);
 
+  const optionTest = () => setShowSelect(!showSelect);
+console.log(filter);
+
+  function handleFilterClick(status) {
+    // setFilter({ status });
+  }
 
   const loadMore = () => {
     setRowsToShow(rowsToShow + 5);
@@ -99,9 +106,7 @@ const changePage = ({ selected }:any) => {
   setOffset(selected);
 };
   
-  useEffect(() => {
-    setTotalRows(data.length);
-  }, [data]);
+
   return (
     <div className="mt-8 ">
       <div className="flex flex-row justify-between ">
@@ -118,7 +123,25 @@ const changePage = ({ selected }:any) => {
             <span className="text-[#4375FF] ml-2">Withdraw</span>
             </span>
           </IconButton> </Link> </div>
-      <div className="ml-[40px]" ><SearchFilter/></div>
+      <div className="ml-[40px] relative bg-white w-[100px] cursor-pointer mb-30  flex justify-center items-center h-[40px]  " >
+        <div className=" flex justify-center items-center gap-3" onClick={optionTest}>
+
+        <Sort /><span className="text-[#707070] "  >filter</span>
+        </div>
+      {showSelect &&
+      (
+
+        <div className="shadow-md absolute text-center bg-white rounded-md max-w-[140px] p-4 top-12 right-2 text-sm  ">
+ <label className="flex flex-row justify-start"><input type="checkbox" onChange={() => handleFilterClick(null)} className="ml-2 mr-4 inlnie"/>All</label>
+ <label className="flex flex-row justify-start"><input type="checkbox" className="ml-2 mr-4 flex" onChange={() => handleFilterClick("pending")}  />Pending</label>
+ <label className="flex flex-row justify-start"><input type="checkbox" onChange={() => handleFilterClick("ready")} className="ml-2 mr-4 flex"/>Ready</label>
+ <label className="flex flex-row justify-start" ><input type="checkbox" onChange={() => handleFilterClick("completed")} className="ml-2 mr-4 flex"/>Completed</label>
+ <label className="flex flex-row justify-start "><input type="checkbox" onChange={() => handleFilterClick("sent")} className="ml-2 mr-4 flex"/>Sent</label>
+ <label className="flex flex-row justify-start"><input type="checkbox" onChange={() => handleFilterClick("canceled")}  className="ml-2 mr-4 flex"/>Canceled</label>
+
+</div>
+    )}
+      </div>
       </div>
        <div className="flex flex-row   max-w-[907px] ml-[100px] mr-[300px] hover:cursor-pointer px-2 max-h-[40px]">
         </div>
@@ -199,6 +222,10 @@ const changePage = ({ selected }:any) => {
             )}
           </tbody>
         </table>
+        
+ 
+  
+
         <div>
           
      {/* {data} */}
@@ -215,14 +242,14 @@ activeClassName={"paginationActive"}
       />
     </div>
 
+
       </Card>
     </div>
-
-
   );
 };
 export const StatusMap = ({ status }: any) => {
   const [color, setColor] = useState("black");
+
 
   useEffect(() => {
     if (status === "pending") {
@@ -236,8 +263,10 @@ export const StatusMap = ({ status }: any) => {
     }
   }, [status]);
 
-  return <div style={{ color: color }}>{status}</div>;
+  return <div style={{ color: color }}>
+    
+    {status}
+        
+    </div>;
 };
 export default Table;
-
-// className=" flex justify-center mt-10 text-[#8C8C8C] px-11 ml-10 m-8 p-8 text-[14px] w-[80%] h-[40px] hover:text-[#4375FF] active:text-[#4375FF]"
