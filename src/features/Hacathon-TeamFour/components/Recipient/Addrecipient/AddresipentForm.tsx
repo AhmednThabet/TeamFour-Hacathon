@@ -1,13 +1,11 @@
 import { Card, Input, Button } from "components";
-
 import { useState } from "react";
-
 import { Dialog, Transition } from "@headlessui/react";
 import useForm from "lib/react-hook-form";
-import { XMarkIcon } from "lib/@heroicons";
 import { useCurrentUser } from "features/authentication";
 import VerifyModal from "../VerfiyCode/VerfiyModal";
 import { getAuthorizationHeader } from "utils";
+
 const AddresipentForm = ({ setIsOpen }: any) => {
   const objectHeader = getAuthorizationHeader();
   const { user } = useCurrentUser();
@@ -50,16 +48,10 @@ const AddresipentForm = ({ setIsOpen }: any) => {
   };
 
   return (
-    <Card className="h-[400px]  p-8 ">
+    <Card className="h-[400px] p-8 ">
       <form onSubmit={handleSubmit(onSubmit)}>
         <Dialog.Title className="font-bold flex justify-between">
           <p>Add Recipient</p>
-          <XMarkIcon
-            onClick={() => setIsOpen(false)}
-            height={20}
-            width={20}
-            className="font-bold cursor-pointer"
-          />
         </Dialog.Title>
         <Input
           withoutHelperText={true}

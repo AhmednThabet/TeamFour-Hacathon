@@ -10,10 +10,11 @@ import { Tab } from "@headlessui/react";
 import useForm from "lib/react-hook-form";
 import { Download } from "lib/@heroicons/index";
 import { Button } from "components";
-import BankFlow from "pages/teamFour/Balance/banck";
+import BankFlow from "pages/teamFour/Balance/BanckFlow";
 import WithdrowLayout from "layouts/WithdrowLayout";
 import { URL_PATHS } from "data";
 import WithdraWPrevieW from "features/Hacathon-TeamFour/components/withdrawPreview";
+import CashFlow from "pages/teamFour/Balance/CashFlow";
 const Home = ({ classname }: any) => {
   const { user } = useCurrentUser();
   const logout = useLogout();
@@ -144,7 +145,7 @@ const Home = ({ classname }: any) => {
                 </HelperText>
               )}
               <Tab.Panel>
-                <BankFlow />
+                <CashFlow />
               </Tab.Panel>
               <Tab.Panel>
                 <BankFlow />

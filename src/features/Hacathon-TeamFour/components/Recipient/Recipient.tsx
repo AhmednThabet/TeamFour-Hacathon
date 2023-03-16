@@ -3,10 +3,7 @@ import axios from "axios";
 import { API_SERVICES_URLS, URL_PATHS } from "data";
 import { API_ENDPOINT } from "data";
 import { Listbox, Dialog } from "@headlessui/react";
-// import { useCurrentUser } from "features/authentication";
 import { getCookie } from "lib/js-cookie";
-import { PlusIcon, ChevronDownIcon } from "lib/@heroicons";
-
 import useSWR from "swr";
 import { Card, Select, Input } from "components";
 import RecipientOption from "./RecipientElemnts/RecipientOption";
@@ -28,8 +25,8 @@ export const Recipient = () => {
       })
       .then((res) => res.data);
   const { data, error, isLoading } = useSWR(
-    // "https://talents-valley-backend.herokuapp.com/api/recipient/list?offset=0&limit=10",
-    API_ENDPOINT + API_SERVICES_URLS.WITHDROW.ADDRECIPINT,
+    "https://talents-valley-backend.herokuapp.com/api/recipient/list?offset=0&limit=10",
+    // API_ENDPOINT + API_SERVICES_URLS.WITHDROW.ADDRECIPINT,
     fetcher
   );
   const [selectedPerson, setSelectedPerson] = useState(
@@ -63,10 +60,10 @@ export const Recipient = () => {
           ) : (
             <RecipientOption data={selectedPerson} />
           )}
-          <ChevronDownIcon height={30} width={30} className="mx-2" />
+          {/* <ChevronDownIcon height={30} width={30} className="mx-2" /> */}
         </Listbox.Button>
 
-        <Listbox.Options className=" bg-white w-[90%] shadow-lg rounded-lg absolute -top-[195px] ">
+        <Listbox.Options className=" bg-white w-[100%] shadow-lg rounded-lg absolute -top-[270px] h-[300px] overflow-auto ">
           {data?.data.recipients.map((recipent: any) => (
             <Listbox.Option
               key={recipent.id}
@@ -84,7 +81,7 @@ export const Recipient = () => {
         onClick={() => setIsOpen(true)}
         className="text-blue-light my-2 flex items-center justify-end cursor-pointer"
       >
-        {<PlusIcon height={20} width={20} />}
+        {/* {<PlusIcon height={20} width={20} />} */}
         <p>Add Recipient</p>{" "}
       </div>
     </div>

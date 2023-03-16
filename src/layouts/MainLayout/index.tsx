@@ -26,7 +26,7 @@ export const MainLayout: MainLayoutType = ({
       >
         {children}
       </main>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };

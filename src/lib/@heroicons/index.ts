@@ -12,7 +12,6 @@ import {
   Bars3CenterLeftIcon as MenuBar,
 } from "@heroicons/react/20/solid";
 
-
 import {
   InformationCircleIcon,
   PlusIcon,
@@ -32,7 +31,8 @@ import {
   AdjustmentsHorizontalIcon as AdjustmentsHorizontalIcon,
   ArrowsUpDownIcon as ArrowsUpDownIcon,
   UserCircleIcon as User,
-  PaperAirplaneIcon as Send,} from "@heroicons/react/24/outline";
+  PaperAirplaneIcon as Send,
+} from "@heroicons/react/24/outline";
 
 export {
   ErrorIconMini,

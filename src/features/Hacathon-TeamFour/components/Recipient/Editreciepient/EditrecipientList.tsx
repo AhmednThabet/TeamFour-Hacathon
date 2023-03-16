@@ -26,7 +26,7 @@ const EditrecipientList = ({
   // ======================================================
 
   return (
-    <Card className="w-[450px] px-10">
+    <Card className="w-[450px] px-10 h-[450px] overflow-auto">
       <div className="flex justify-between mb-8">
         <p className="font-bold">Recipients</p>
         <XMarkIcon
@@ -70,7 +70,7 @@ const EditrecipientList = ({
         <Button
           buttonSize="small"
           fullWidth={true}
-          className="bg-white !text-blue-light shadow-md border hover:!text-white"
+          className="!bg-white !text-blue shadow-md border "
         >
           Add
         </Button>
