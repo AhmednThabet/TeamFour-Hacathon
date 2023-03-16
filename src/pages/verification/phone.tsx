@@ -38,7 +38,7 @@ const PhoneVerification: NextPageWithLayout = () => {
       <p className="text-sm text-gray-dark mb-4">
         We have sent you a verification code to your phone number {user?.mobile}
       </p>
-      <VerifyMobileForm onVerify={onVerify} />
+      <VerifyMobileForm onVerify={onVerify} requestUrl requestBody codeKey />
     </>
   );
 

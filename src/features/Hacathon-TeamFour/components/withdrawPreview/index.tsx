@@ -9,7 +9,7 @@ export const WithdraWPrevieW = ({ setvisibleConfirm }: any) => {
           <h2 className=" text-2xl font-bold mb-5">Withdraw Preview</h2>
           <span
             className=" absolute right-0 top-0 font-bold cursor-pointer"
-            onClick={() => setvisibleConfirm((pre) => !pre)}
+            onClick={() => setvisibleConfirm((pre: any) => !pre)}
           >
             X
           </span>
@@ -53,7 +53,7 @@ export const WithdraWPrevieW = ({ setvisibleConfirm }: any) => {
 
         <Button
           className=" mt-10 w-5/6"
-          onClick={() => setvisibleConfirm((pre) => !pre)}
+          onClick={() => setvisibleConfirm((pre: any) => !pre)}
         >
           Confirm
         </Button>
