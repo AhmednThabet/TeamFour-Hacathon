@@ -9,7 +9,7 @@ export function ContentWithDraw({ setContent, id }) {
     if (!isLoading) {
       console.log("data ==>", data);
       if (data) {
-        setContent(data.withdraw);
+        setContent(data?.withdraw);
       }
     }
   }, [isLoading]);
