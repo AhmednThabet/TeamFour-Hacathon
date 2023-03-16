@@ -13,9 +13,6 @@ import axios from "axios";
 import { useFetch } from "hooks";
 import { API } from "components/teamFour/API";
 import format from "components/teamFour/API/format";
-const SORT_ASC = "asc";
-
-const SORT_DESC = "desc";
 
 function getURL(hash) {
   let url = "";
