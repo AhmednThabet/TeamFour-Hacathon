@@ -51,7 +51,7 @@ export interface SelectProps
     CommonFormElementsType {
   selectClassName?: string;
   selectSize?: SizeVariantsType;
-  options: { value: string; label: string | ReactNode }[];
+  options: { value: string; label: any }[];
 }
 
 export interface HelperTextProps

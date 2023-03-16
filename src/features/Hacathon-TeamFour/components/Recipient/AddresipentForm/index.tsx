@@ -60,9 +60,7 @@ const AddresipentForm = ({ setIsOpen }: any) => {
           label="Recipients Full Name (Arabic)"
           type="text"
           dir="rtl"
-          {...register("name", {
-            pattern: "/^[\u0621-\u064A0-9 ]+$/g",
-          })}
+          {...register("name")}
         />
         <Input
           withoutHelperText={true}

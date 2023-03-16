@@ -65,7 +65,7 @@ const Addbank = ({ setVisibleAddbank }: any) => {
             disabled
           />
 
-          <Select options={mockDataBank[0].Branch} label="Branch" />
+          {/* <Select options={[mockDataBank.Branch[0]]} label="Branch" /> */}
           <Input
             withoutHelperText={true}
             className=" mb-6 text-[#707070] font-semibold "
@@ -95,7 +95,7 @@ const Addbank = ({ setVisibleAddbank }: any) => {
             value="USD (001)"
           />
 
-          <Select options={mockDataBank[1].Ledger} label="Branch" />
+          {/* <Select options={mockDataBank[1].Ledger} label="Branch" /> */}
 
           <Button
             className=" my-5  "
