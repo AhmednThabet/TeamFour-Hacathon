@@ -13,7 +13,7 @@ export const Balnce = ({ classname }: any) => {
     <div
       className={
         classname +
-        " h-48  max-w-[364px] fixed right-10 top-10  mt-[80px] rounded-lg p-5 w-full flex  md:w-[20%] lg:w-[30%]  flex-col gap-4 bg-[#FFFFFF] "
+        " h-48  max-w-[364px] fixed right-5 top-10  mt-[80px] rounded-lg p-5 w-full flex  md:w-[20%] lg:w-[30%]  flex-col gap-4 bg-[#FFFFFF] "
       }
     >
       <h2 className="text-[#8C8C8C]">Balance</h2>

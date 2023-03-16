@@ -8,7 +8,6 @@ import { ErrorIconMini } from "lib/@heroicons";
 import { Tab } from "@headlessui/react";
 import useForm from "lib/react-hook-form";
 import { Download } from "../../lib/@heroicons/index";
-import { Button } from "components";
 
 
 const Home = ({ classname }: any) => {

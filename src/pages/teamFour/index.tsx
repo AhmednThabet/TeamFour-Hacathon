@@ -2,18 +2,11 @@
 import React,{useState,useEffect} from 'react'
 import { NoSsr,Table } from "components";
 import { SortKeys } from "types";
-import SearchFilter from "components/Table/Search/SearchFilter";
-import IconButton from "components/IconButton";
-import { Download } from "../../lib/@heroicons/index";
-import Search from "components/Table/Search";
-import axios from 'axios';
-<<<<<<< HEAD
-// import Table from './UserTable';
 import Balnce from "layouts/Balnce";
 import SideBar from "layouts/SideBar";
-=======
->>>>>>> bf2acff1607b574e15ee019a12ca33ae3d8c3805
 import { getAuthorizationHeader } from "utils";
+import { Recipient } from "features/Hacathon-TeamFour/components/Recipient/Recipient";
+import { Card } from "components";
 
 const headers: { key: SortKeys; label: string }[] = [
   { key: "name", label: "Name" },
@@ -22,9 +15,8 @@ const headers: { key: SortKeys; label: string }[] = [
   { key: "status", label: "Status" },
 ];
 
-import { Recipient } from "features/Hacathon-TeamFour/components/Recipient/Recipient";
-import { Card } from "components";
-const Index = () => {
+
+export const Index = () => {
   return (
     <Card className="min-w-[50%] flex flex-col items-center relative">
       <Recipient />
@@ -33,12 +25,7 @@ const Index = () => {
 };
 
 
-<<<<<<< HEAD
-// ];
 export const TableWidthrow = ({ classname }: any) => {
-=======
-export const TableWidthrow = () => {
->>>>>>> bf2acff1607b574e15ee019a12ca33ae3d8c3805
   const [search, setSearch] = useState('');
   const [data, setData] = useState([]);
   const Authorization = getAuthorizationHeader();
