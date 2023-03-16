@@ -1,61 +1,24 @@
 import { TimeLine, Interstions, Header, Details } from "./components";
-import { Aside, Button, Loading } from "components";
+import { Drawer, Button, Loading } from "components";
 import { useEffect, useState } from "react";
 import { useFetch } from "hooks";
 import { API } from "../API";
+import { format } from "../API/format";
 import useMessage from "../useMessage";
-
-function format(data) {
-  let finshData = {
-    status: data.status,
-    amount: data.amount,
-    history: data.history,
-    id: data._id,
-  };
-
-  if (data.typeWithdraw == "bank") {
-    finshData = {
-      provider: {
-        name: data.bank.bankName,
-        infos: data.bank.accountNumber,
-      },
-      isBank: true,
-      ...finshData,
-      interstions: [
-        "Open your bank account app to ensure payment delivery",
-        "Avoid opening support ticket before expected date",
-
-        "Confirm receiving your payment",
-      ],
-    };
-  } else {
-    finshData = {
-      provider: {
-        name: data.office.name,
-        infos: "",
-        fees: data.office.fees,
-      },
-      isBank: false,
-      ...finshData,
-      interstions: [
-        `Address: ${data.office.address}`,
-        "Working hours from 9:00 am to 7:00 pm",
-        "Bring your ID for identification",
-        "Confirm receiving your payment",
-        `Office fees ${data.office.fees}`,
-      ],
-    };
-  }
-  return finshData;
-}
+import { getAuthorizationHeader } from "utils";
 
 function getAction(status) {
+  const Authorization = getAuthorizationHeader();
+
   const typeStatus = status.toLowerCase();
   switch (typeStatus) {
     case "pending":
       return {
         text: "Cancel Withdrawal",
-        action: (id) => [API.cancelWithdrawRequest(id), API.getOptions("PUT")],
+        action: (id) => [
+          API.cancelWithdrawRequest(id),
+          API.getOptions(Authorization.Authorization, "PUT"),
+        ],
         disabled: false,
         hasRequestUrl: true,
       };
@@ -80,6 +43,7 @@ function getAction(status) {
         action: (id) => [
           API.confrimWithdrawRequest(id),
           API.getOptions(
+            Authorization.Authorization,
             "PUT",
             JSON.stringify({
               isConfirmed: true,
@@ -92,7 +56,7 @@ function getAction(status) {
   }
 }
 
-export const Sidebar = ({ isShow = false, setIsShow, isLoading, data }) => {
+export const DrawerBar = ({ isShow = false, setIsShow, isLoading, data }) => {
   const content = !isLoading && data && format(data);
   const action = content && getAction(content?.status);
 
@@ -143,7 +107,7 @@ export const Sidebar = ({ isShow = false, setIsShow, isLoading, data }) => {
 
   return (
     <>
-      <Aside
+      <Drawer
         isShow={isShow}
         setIsShow={handleClose}
         title="Withdrawal"
@@ -177,11 +141,11 @@ export const Sidebar = ({ isShow = false, setIsShow, isLoading, data }) => {
             </>
           )}
         </div>
-      </Aside>
+      </Drawer>
       {message}
       {requestMessage}
     </>
   );
 };
 
-export default Sidebar;
+export default DrawerBar;

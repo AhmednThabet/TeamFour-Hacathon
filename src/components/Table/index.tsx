@@ -100,7 +100,7 @@ export const Table = ({
         <div className="flex flex-row   max-w-[907px] ml-[100px] mr-[300px] hover:cursor-pointer px-2 max-h-[40px]"></div>
       </div>
       {/* {!withoutSearch && <Search setSearch={setSearch} />} */}
-      <Card className="max-w-[800px]">
+      <Card className="">
         <table className="w-full text-sm">
           <thead className="bg-white text-[#9E9E9E] mb-4 text-sm font-normal px-4	">
             <tr>

@@ -1,11 +1,9 @@
 import React, { useState } from "react";
 import Card from "components/Card";
-import { useCurrentUser, useLogout } from "features/authentication";
-import { HelperText, IconButton, NoSsr, Input, Radio } from "components";
-import { Cash } from "components/svg/Cash";
-import { Bank } from "components/svg/Bank";
-import { ErrorIconMini, XMarkIcon } from "lib/@heroicons";
-import { Tab } from "@headlessui/react";
+import { useCurrentUser } from "features/authentication";
+import { IconButton, NoSsr, Input, Radio } from "components";
+import { Bank, Cash } from "components/svg";
+import { XMarkIcon } from "lib/@heroicons";
 import useForm from "lib/react-hook-form";
 import { FORM_VALIDATION } from "data";
 import { Button } from "components";
@@ -122,11 +120,6 @@ const Home = ({ classname }) => {
       </Card>
     </NoSsr>
   );
-};
-
-Home.mainLayoutProps = {
-  title: "Talents Valley Home",
-  pageDescription: "Home page description",
 };
 
 export default Home;
