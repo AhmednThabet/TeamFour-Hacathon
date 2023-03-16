@@ -37,8 +37,8 @@ const AddresipentForm = ({ setIsOpen }: any) => {
           ...objectHeader,
         },
         body: JSON.stringify({
-          mobile: user.mobile,
-          idNumber: user.verifiedId.idNumber,
+          mobile: user && user.mobile,
+          idNumber: user && user.verifiedId.idNumber,
         }),
       }
     );

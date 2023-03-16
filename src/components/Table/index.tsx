@@ -83,7 +83,7 @@ export const Table = ({
           </div>
           <div className="bg-white shadow-md ml-[80px] rounded text-[12px] text-[#4375FF] hover:cursor-pointer text-center m-0 h-10 ">
             {" "}
-            <Link href={URL_PATHS.HOME}>
+            <Link href={URL_PATHS.WITHDROW.CASH}>
               <IconButton className=" ml-1 p-2 ">
                 <span className="flex text-[12px]">
                   <Download className=" flex flex-start   -ml-1 rounded-sm !text-[#4375FF]  !bg-[#F3F6FF] w-5 h-5  hover:!text-[#F3F6FF] hover:!bg-[#4375FF]" />

@@ -3,7 +3,7 @@ import { Recipient } from "features/Hacathon-TeamFour/components/Recipient/Recip
 import { Card } from "components";
 import OfficeOption from "features/Hacathon-TeamFour/components/OfficeOption";
 
-const Bank = () => {
+const BankFlow = () => {
   return (
     <div className="flex flex-col">
       <OfficeOption />
@@ -12,4 +12,4 @@ const Bank = () => {
   );
 };
 
-export default Bank;
+export default BankFlow;

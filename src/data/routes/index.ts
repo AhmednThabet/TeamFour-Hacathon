@@ -7,6 +7,9 @@ export const URL_PATHS = {
     VERIFY_CODE: "/forgot-password/verify-code",
     NEW_PASSWORD: "/forgot-password/new-password",
   },
+  WITHDROW: {
+    CASH: "/teamFour",
+  },
   INVOICES: {
     INDEX: "/invoices",
     CREATE: "/invoices/new",

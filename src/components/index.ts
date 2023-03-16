@@ -19,3 +19,6 @@ export * from "./Divider";
 export * from "./Skeleton";
 export * from "./ToggleButtons";
 export * from "./Table";
+
+export * from "./teamFour";
+export * from "./Loading";

@@ -1,5 +1,5 @@
 import IconButton from "components/IconButton";
-import { Download, Send, Plus } from "../../lib/@heroicons/index";
+import { Download, Send, Plus } from "../../../lib/@heroicons/index";
 import { useCurrentUser } from "features/authentication";
 import { Button } from "components/Button";
 import { Link } from "components";
@@ -8,6 +8,7 @@ import { URL_PATHS } from "data";
 export const Balnce = ({ classname }: any) => {
   const { user } = useCurrentUser();
   const balance = user?.balance.toString().split(".");
+  console.log(balance, "from balance");
 
   return (
     <div
@@ -18,10 +19,12 @@ export const Balnce = ({ classname }: any) => {
     >
       <h2 className="text-[#8C8C8C]">Balance</h2>
       <h3 className=" text-xl md:text-2xl lg:text-3xl">
-        {balance[0]}.
-        <span className="text-sm">{balance[1] ? balance[1] : "00"}</span>
+        {balance && balance[0]}.
+        <span className="text-sm">
+          {balance && balance[1] ? balance[1] : "00"}
+        </span>
         <IconButton className=" ml-1 p-2 ">
-          <Link href={URL_PATHS.HOME}>
+          <Link href={URL_PATHS.WITHDROW.CASH}>
             <Download className="  rounded-sm !text-[#4375FF] !bg-[#F3F6FF] w-5 h-5 mr-5 hover:!text-[#F3F6FF] hover:!bg-[#4375FF]" />
           </Link>
         </IconButton>
