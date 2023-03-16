@@ -22,7 +22,7 @@ function getAction(status) {
         disabled: false,
         hasRequestUrl: true,
       };
-    case "canceled":
+    case "cancelled":
       return {
         text: "Confirm Receipt",
         action: () => {},
@@ -57,7 +57,7 @@ function getAction(status) {
 }
 
 export const DrawerBar = ({ isShow = false, setIsShow, isLoading, data }) => {
-  const content = !isLoading && data && format(data);
+  const content = !isLoading && data && format.response(data);
   const action = content && getAction(content?.status);
 
   const { message, setIsOpen, setMessage } = useMessage();

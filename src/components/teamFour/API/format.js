@@ -1,9 +1,10 @@
-export function format(data) {
+export function response(data) {
   let finshData = {
     status: data.status,
     amount: data.amount,
     history: data.history,
     id: data._id,
+    createdAt: data.createdAt,
   };
 
   if (data.typeWithdraw == "bank") {
@@ -41,5 +42,18 @@ export function format(data) {
   }
   return finshData;
 }
+
+function date(time) {
+  return new Date(time).toLocaleDateString("en-us", {
+    day: "2-digit",
+    month: "short",
+    year: "numeric",
+  });
+}
+
+export const format = {
+  date,
+  response,
+};
 
 export default format;

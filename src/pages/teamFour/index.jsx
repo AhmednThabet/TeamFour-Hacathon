@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { HomeLayout } from "../../layouts";
-import { Balance, Table, DrawerBar } from "components";
+import { Balance, Table, DrawerBar, Trainstions } from "components";
 import { API } from "../../components/teamFour/API";
 import { useFetch } from "hooks";
 import { getAuthorizationHeader } from "utils";
@@ -21,11 +21,7 @@ export const Home = () => {
   return (
     <>
       <HomeLayout>
-        <Table
-          fetchUrl="withdraw/list"
-          columns={["Name Date", "", "Amount", "Status"]}
-          onTableClick={handleClickOnTable}
-        />
+        <Trainstions handleClickOnTable={handleClickOnTable} />
         <Balance />
       </HomeLayout>
       <DrawerBar

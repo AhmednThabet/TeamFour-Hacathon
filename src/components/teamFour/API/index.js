@@ -8,6 +8,9 @@ function cancelWithdrawRequest(id) {
 function confrimWithdrawRequest(id) {
   return `https://talents-valley-backend.herokuapp.com/api/withdraw/confirm-payout/${id}`;
 }
+function getList(keys = "") {
+  return `https://talents-valley-backend.herokuapp.com/api/withdraw/list${keys}`;
+}
 
 function getOptions(token, method = "get", data) {
   const options = {
@@ -27,6 +30,7 @@ export const API = {
   cancelWithdrawRequest,
   confrimWithdrawRequest,
   getOptions,
+  getList,
 };
 
 export default URL;
