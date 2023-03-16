@@ -9,16 +9,12 @@ import IconButton from "components/IconButton";
 import { Download } from "../../lib/@heroicons/index";
 import { Link } from "components";
 import { URL_PATHS } from "data";
+import ReactPaginate from "react-paginate";
 import axios from "axios";
 const SORT_ASC = "asc";
 const SORT_DESC = "desc";
 
-export const Table = ({
-  columns,
-  fetchUrl,
-  withoutSearch = false,
-  className = "",
-}: any) => {
+export const Table = ({ columns, fetchUrl, rowClick }: any) => {
   const Authorization = getAuthorizationHeader();
   const token = Authorization.Authorization;
   const [data, setData] = useState([]);
@@ -70,7 +66,13 @@ export const Table = ({
 
     fetchData();
   }, [perPage, sortColumn, sortOrder, search, fetchUrl, token, offset]);
+  const userPerPage = 5;
+  const pageVisited = offset * userPerPage;
+  const pageCount = Math.ceil(data.length / userPerPage);
 
+  const changePage = ({ selected }: any) => {
+    setOffset(selected);
+  };
   useEffect(() => {
     setTotalRows(data.length);
   }, [data]);
@@ -78,18 +80,18 @@ export const Table = ({
     <div className="mt-8 ">
       <div className="flex flex-row justify-between ">
         <div className="flex flex-row justify-between">
-          <div>
+          <div className="-ml-[5px]">
             <Search setSearch={setSearch} />
           </div>
-          <div className="bg-white shadow-md ml-[80px] rounded text-[12px] text-[#4375FF] hover:cursor-pointer text-center m-0 h-10 ">
+          <div className="bg-white shadow-md ml-[190px] rounded text-[12px] text-[#4375FF] hover:cursor-pointer text-center m-0 h-10 ">
             {" "}
-            <Link href={URL_PATHS.WITHDROW.CASH}>
-              <IconButton className=" ml-1 p-2 ">
-                <span className="flex text-[12px]">
+            <Link href={URL_PATHS.HOME}>
+              <IconButton className=" ml-1 p-2 w-[100px] ">
+                <span className="flex text-[12px] w-[400px]">
                   <Download className=" flex flex-start   -ml-1 rounded-sm !text-[#4375FF]  !bg-[#F3F6FF] w-5 h-5  hover:!text-[#F3F6FF] hover:!bg-[#4375FF]" />
+                  <span className="text-[#4375FF] ml-2">Withdraw</span>
                 </span>
-              </IconButton>
-              <span className="-mt[20px] mr-[20px]">Withdraw</span>{" "}
+              </IconButton>{" "}
             </Link>{" "}
           </div>
           <div className="ml-[40px]">
@@ -98,8 +100,7 @@ export const Table = ({
         </div>
         <div className="flex flex-row   max-w-[907px] ml-[100px] mr-[300px] hover:cursor-pointer px-2 max-h-[40px]"></div>
       </div>
-      {/* {!withoutSearch && <Search setSearch={setSearch} />} */}
-      <Card className="max-w-[600px] h-[400px] overflow-y-auto">
+      <Card className="max-w-[700px] h-[420px] ">
         <table className="w-full text-sm">
           <thead className="bg-white text-[#9E9E9E] mb-4 text-sm font-normal px-4	">
             <tr>
@@ -128,31 +129,33 @@ export const Table = ({
           <tbody>
             {!loading && data?.length === 0 && <tr>No data found</tr>}
             {!loading ? (
-              data?.slice(0, rowsToShow).map((item: any, index) => {
-                return (
-                  <tr
-                    key={index}
-                    className="hover:bg-gray-light hover:cursor-pointer text-sm"
-                    onClick={() => console.log(item._id)}
-                  >
-                    <td className="border-b-2 text-sm px-4 py-2">
-                      {item.office?.name} <br />
-                      <span className="text-[#BEC2C6] text-sm">
-                        {item.createdAt}
-                      </span>
-                    </td>
-                    <td className="border-b-2 text-sm px-4 py-2">
-                      {item.recipient?.name}
-                    </td>
-                    <td className="border-b-2 text-sm px-4 py-2">
-                      ${item.amount}
-                    </td>
-                    <td className="border-b-2 text-sm px-4 py-2">
-                      <StatusMap status={item.status} />
-                    </td>
-                  </tr>
-                );
-              })
+              data
+                ?.slice(pageVisited, pageVisited + userPerPage)
+                .map((item: any, index) => {
+                  return (
+                    <tr
+                      key={index}
+                      className="hover:bg-gray-light hover:cursor-pointer text-sm"
+                      onClick={() => rowClick(item._id)}
+                    >
+                      <td className="border-b-2 text-sm px-4 py-2">
+                        {item.office?.name} <br />
+                        <span className="text-[#BEC2C6] text-sm">
+                          {item.createdAt}
+                        </span>
+                      </td>
+                      <td className="border-b-2 text-sm px-4 py-2">
+                        {item.recipient?.name}
+                      </td>
+                      <td className="border-b-2 text-sm px-4 py-2">
+                        ${item.amount}
+                      </td>
+                      <td className="border-b-2 text-sm px-4 py-2">
+                        <StatusMap status={item.status} />
+                      </td>
+                    </tr>
+                  );
+                })
             ) : (
               <tr>
                 <td colSpan={columns.length + 1}>
@@ -173,11 +176,19 @@ export const Table = ({
             )}
           </tbody>
         </table>
-        {rowsToShow < totalRows && (
-          <button className="text-sm text-[#4375FF]" onClick={loadMore}>
-            Show more
-          </button>
-        )}
+        <div>
+          <ReactPaginate
+            previousLabel={"<"}
+            nextLabel={">"}
+            pageCount={pageCount}
+            onPageChange={changePage}
+            containerClassName={"paginationBttns"}
+            previousLinkClassName={"previousBttn"}
+            nextLinkClassName={"nextBttn"}
+            disabledClassName={"paginationDisabled"}
+            activeClassName={"paginationActive"}
+          />
+        </div>
       </Card>
     </div>
   );
