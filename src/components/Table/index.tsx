@@ -64,9 +64,9 @@ export const Table = ({
     let data = hash.data;
     const fun = getAction(baseOn);
     if (isUp) {
-      data = data.sort((a, b) => fun(a, b));
+      data = data?.sort((a, b) => fun && fun(a, b));
     } else {
-      data = data.sort((a, b) => fun(b, a));
+      data = data?.sort((a, b) => fun && fun(b, a));
     }
     dispatch({ type: "SET_DATA", payLoad: data });
   }
@@ -80,7 +80,7 @@ export const Table = ({
     fetch(API.getList(getURL(hash)), API.getOptions(token)).then((data) => {
       dispatch({
         type: "SET_DATA",
-        payLoad: data.withdraws.map((item) => format.response(item)),
+        payLoad: data?.withdraws.map((item) => format.response(item)),
       });
     });
   }, [hash.search]);

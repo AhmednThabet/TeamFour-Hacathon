@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { HomeLayout } from "../../layouts";
-import { Balance, Table, DrawerBar, Trainstions } from "components";
+import { Balance, Table, DrawerBar, Trainstions, NoSsr } from "components";
 import { API } from "../../components/teamFour/API";
 import { useFetch } from "hooks";
 import { getAuthorizationHeader } from "utils";
@@ -19,7 +19,7 @@ export const Home = () => {
     );
   }
   return (
-    <>
+    <NoSsr>
       <HomeLayout>
         <Trainstions handleClickOnTable={handleClickOnTable} />
         <Balance />
@@ -30,7 +30,7 @@ export const Home = () => {
         isLoading={isLoading}
         data={DrawerBarInfo?.withdraw}
       />
-    </>
+    </NoSsr>
   );
 };
 

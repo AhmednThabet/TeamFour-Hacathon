@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Card from "components/Card";
-import { useCurrentUser } from "features/authentication";
+import { useCurrentUser, useLogout } from "features/authentication";
 import { IconButton, NoSsr, Input, Radio } from "components";
 import { Bank, Cash } from "components/svg";
 import { XMarkIcon } from "lib/@heroicons";
@@ -9,6 +9,7 @@ import { FORM_VALIDATION } from "data";
 import { Button } from "components";
 
 const Home = ({ classname }) => {
+  const logout = useLogout();
   const { user } = useCurrentUser();
   const [isBank, setIsBank] = useState(false);
 
@@ -117,6 +118,7 @@ const Home = ({ classname }) => {
           {isBank ? "Bank" : "Cash"}
           <button type="submit">Submit</button>
         </form>
+        <button onClick={() => logout()}>Log out</button>
       </Card>
     </NoSsr>
   );
