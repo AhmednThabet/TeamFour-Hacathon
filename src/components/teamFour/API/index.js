@@ -13,11 +13,12 @@ function getList(keys = "") {
 }
 
 function getOptions(token, method = "get", data) {
+  console.log(token);
   const options = {
     headers: {
-      method,
       Authorization: token,
     },
+    method,
   };
   if (data) {
     options.body = data;

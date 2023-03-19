@@ -15,7 +15,7 @@ export function useFetch() {
 
       setFinalData(data.data);
       temp = data.data;
-      console.log("data ===>", data);
+      console.log("fetch", data);
 
       setIsLoading(false);
       setIsError(false);
