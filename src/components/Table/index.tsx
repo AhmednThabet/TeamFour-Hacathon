@@ -94,9 +94,7 @@ export const Table = ({ columns, fetchUrl, rowClick }: any) => {
               </IconButton>{" "}
             </Link>{" "}
           </div>
-          <div className="ml-[40px]">
-            <SearchFilter />
-          </div>
+          <div className="ml-[40px]">-</div>
         </div>
         <div className="flex flex-row   max-w-[907px] ml-[100px] mr-[300px] hover:cursor-pointer px-2 max-h-[40px]"></div>
       </div>
