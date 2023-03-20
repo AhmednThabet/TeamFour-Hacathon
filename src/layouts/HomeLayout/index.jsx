@@ -1,4 +1,4 @@
-import SideBar from "./../SideBar";
+import SideBar from "../WithdrowLayout/SideBar";
 export const HomeLayout = ({ children, withoutDefaultSider = false }) => {
   const classes = {
     left: " fixed top-[60px] left-0 transition-all z-40 h-[calc(100vh-60px)] w-[180px]   z-50 bg-white   lg:bg-transparent   lg:h-[calc(100vh-120px)]  lg:flex ",

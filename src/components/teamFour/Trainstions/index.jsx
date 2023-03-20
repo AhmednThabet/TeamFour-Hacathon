@@ -144,7 +144,7 @@ export function Trainstions({ handleClickOnTable }) {
         />
 
         <div className="flex justify-between gap-[10px]">
-          <Link href={URL_PATHS.HOME}>
+          <Link href="/teamFour">
             <p className=" flex items-center  text-blue-500 border  rounded-md shadow  p-2 bg-white  ">
               <span className="flex text-[12px]">
                 <Download className=" w-5 h-5" />

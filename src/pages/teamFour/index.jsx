@@ -7,6 +7,8 @@ import { XMarkIcon } from "lib/@heroicons";
 import useForm from "lib/react-hook-form";
 import { FORM_VALIDATION } from "data";
 import { Button } from "components";
+import { CashFlow } from "./Balance/CashFlow";
+import { BanckFlow } from "./Balance/BanckFlow";
 
 const Home = ({ classname }) => {
   const logout = useLogout();
@@ -115,7 +117,7 @@ const Home = ({ classname }) => {
               helperText={errors?.amount?.message}
             />
           </div>
-          {isBank ? "Bank" : "Cash"}
+          {isBank ? <BanckFlow /> : <CashFlow />}
           <button type="submit">Submit</button>
         </form>
         <button onClick={() => logout()}>Log out</button>

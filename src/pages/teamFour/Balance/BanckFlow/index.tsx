@@ -5,7 +5,7 @@ import AddWithdrawPreview from "features/Hacathon-TeamFour/components/AddWithdra
 import OfficeOption from "features/Hacathon-TeamFour/components/OfficeOption";
 import BankOption from "features/Hacathon-TeamFour/components/BankOption";
 
-const BanckFlow = () => {
+export const BanckFlow = () => {
   const [visibleConfirm, setVisibleConfirm] = useState(false);
   const [visibleAddbank, setVisibleAddbank] = useState(false);
 

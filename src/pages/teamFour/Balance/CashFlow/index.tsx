@@ -1,7 +1,7 @@
 import React from "react";
 import { Recipient, SelectOffice } from "features/Hacathon-TeamFour";
 
-const CashFlow = () => {
+export const CashFlow = () => {
   return (
     <div className="flex flex-col">
       <SelectOffice />

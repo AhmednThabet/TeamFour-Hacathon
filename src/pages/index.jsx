@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { HomeLayout } from "../../layouts";
+import { HomeLayout } from "layouts/HomeLayout";
 import { Balance, Table, DrawerBar, Trainstions, NoSsr } from "components";
-import { API } from "../../components/teamFour/API";
+import { API } from "components/teamFour/API";
 import { useFetch } from "hooks";
 import { getAuthorizationHeader } from "utils";
 
