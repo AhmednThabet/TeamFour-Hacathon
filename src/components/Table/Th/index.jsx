@@ -1,6 +1,6 @@
 import { Triangle } from "components/svg";
 import React from "react";
-
+//
 function isUpActive(column, order) {
   return order.baseOn == column && order.isUp;
 }
