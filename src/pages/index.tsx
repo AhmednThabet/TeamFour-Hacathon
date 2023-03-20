@@ -67,8 +67,6 @@ export const TableWidthrow = () => {
           isLoading={isLoading}
           data={content}
         />
-
-        {/* <Bank /> */}
       </div>
     </NoSsr>
   );

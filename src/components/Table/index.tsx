@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useReducer, useState } from "react";
 import Search from "./Search";
-import { Card, Skeleton } from "components";
+import { Card, Skeleton, Status } from "components";
 import { API_ENDPOINT } from "data";
 import { getAuthorizationHeader } from "utils";
 import { ArrowsUpDownIcon } from "@heroicons/react/24/outline";
@@ -11,9 +11,19 @@ import { Link } from "components";
 import { URL_PATHS } from "data";
 import ReactPaginate from "react-paginate";
 import axios from "axios";
-const SORT_ASC = "asc";
-const SORT_DESC = "desc";
+import { useFetch } from "hooks";
+import { API } from "components/teamFour/API";
+import format from "components/teamFour/API/format";
 
+function getURL(hash) {
+  let url = "";
+  if (hash.search) {
+    url += `?search=${hash.search}`;
+  }
+  return url;
+}
+
+<<<<<<< HEAD
 export const Table = ({ columns, fetchUrl, rowClick }: any) => {
   const Authorization = getAuthorizationHeader();
   const token = Authorization.Authorization;
@@ -26,44 +36,72 @@ export const Table = ({ columns, fetchUrl, rowClick }: any) => {
   const [loading, setLoading] = useState(true);
   const [rowsToShow, setRowsToShow] = useState(5);
   const [totalRows, setTotalRows] = useState(0);
+=======
+export const Table = ({
+  columns,
+  withoutSearch = false,
+  className = "",
+  onTableClick = console.log,
+  search,
+  dispatch,
+  hash,
+}) => {
+  // const [sortColumn, setSortColumn] = useState([0]);
+  // const [sortOrder, setSortOrder] = useState("asc");
+  // const [search, setSearch] = useState("");
+  // const [rowsToShow, setRowsToShow] = useState(5);
+  // const [totalRows, setTotalRows] = useState(0);
+>>>>>>> 64e3e61a662b0f453fc6d950c8174ac91ce6c77c
 
-  const loadMore = () => {
-    setRowsToShow(rowsToShow + 5);
-  };
-  const handleSort = (column: any) => {
-    if (column === sortColumn) {
-      sortOrder === SORT_ASC ? setSortOrder(SORT_DESC) : setSortOrder(SORT_ASC);
-    } else {
-      setSortColumn(column);
-      setSortOrder(SORT_ASC);
+  // const loadMore = () => {
+  //   setRowsToShow(rowsToShow + 5);
+  // };
+  // const handleSort = (column) => {
+  //   if (column === sortColumn) {
+  //     sortOrder === SORT_ASC ? setSortOrder(SORT_DESC) : setSortOrder(SORT_ASC);
+  //   } else {
+  //     setSortColumn(column);
+  //     setSortOrder(SORT_ASC);
+  //   }
+  // };
+
+  function getAction(baseOn) {
+    switch (baseOn.toLowerCase()) {
+      case "amount": {
+        return (a, b) => a.amount - b.amount;
+      }
+      case "status": {
+        return (a, b) => a > b;
+      }
     }
-  };
+  }
+
+  function sort(baseOn, isUp) {
+    let data = hash.data;
+    const fun = getAction(baseOn);
+    if (isUp) {
+      data = data.sort((a, b) => fun(a, b));
+    } else {
+      data = data.sort((a, b) => fun(b, a));
+    }
+    dispatch({ type: "SET_DATA", payLoad: data });
+  }
+
+  console.log("hash ==> data", hash.data);
+  const { isLoading, fetch } = useFetch();
 
   useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true);
-      const params = {
-        search,
-        sort_field: sortColumn,
-        sort_order: sortOrder,
-        per_page: perPage,
-        // page: currentPage,
-      };
-      const { data } = await axios.get(
-        `${API_ENDPOINT}/${fetchUrl}?search=${search}&limit=${perPage}&offset=${offset}`,
-        {
-          headers: {
-            Authorization: token,
-          },
-        }
-      );
-      setData(data?.data.withdraws);
-      console.log(data?.data.withdraws);
-      setTimeout(() => {
-        setLoading(false);
-      }, 300);
-    };
+    const Authorization = getAuthorizationHeader();
+    const token = Authorization.Authorization;
+    fetch(API.getList(getURL(hash)), API.getOptions(token)).then((data) => {
+      dispatch({
+        type: "SET_DATA",
+        payLoad: data.withdraws.map((item) => format.response(item)),
+      });
+    });
+  }, [hash.search]);
 
+<<<<<<< HEAD
     fetchData();
   }, [perPage, sortColumn, sortOrder, search, fetchUrl, token, offset]);
   const userPerPage = 5;
@@ -100,24 +138,30 @@ export const Table = ({ columns, fetchUrl, rowClick }: any) => {
       </div>
       <Card className="max-w-[700px] h-[420px] ">
         <table className="w-full text-sm">
+=======
+  return (
+    <div className="mt-8 ">
+      <Card className=" overflow-y-auto">
+        <table className="min-w-[400px] w-full text-sm">
+>>>>>>> 64e3e61a662b0f453fc6d950c8174ac91ce6c77c
           <thead className="bg-white text-[#9E9E9E] mb-4 text-sm font-normal px-4	">
             <tr>
-              {columns.map((column: any) => {
+              {columns.map((column) => {
                 return (
                   <th
                     key={column}
-                    onClick={(e) => handleSort(column)}
+                    onClick={(e) => sort(column)}
                     className="py-4 text-sm"
                   >
                     <p className="inline-flex text-sm cursor-pointer">
                       {column.toUpperCase().replace("_", " ")}
-                      {column === sortColumn ? (
+                      {/* {column === sortColumn ? (
                         <>
                           {sortOrder === SORT_ASC && (
                             <ArrowsUpDownIcon width={12} height={12} />
                           )}
                         </>
-                      ) : null}
+                      ) : null} */}
                     </p>
                   </th>
                 );
@@ -125,6 +169,7 @@ export const Table = ({ columns, fetchUrl, rowClick }: any) => {
             </tr>
           </thead>
           <tbody>
+<<<<<<< HEAD
             {!loading && data?.length === 0 && <tr>No data found</tr>}
             {!loading ? (
               data
@@ -154,6 +199,33 @@ export const Table = ({ columns, fetchUrl, rowClick }: any) => {
                     </tr>
                   );
                 })
+=======
+            {!isLoading && hash.data?.length === 0 && <tr>No data found</tr>}
+            {!isLoading ? (
+              hash.data?.slice(0).map((item, index) => {
+                return (
+                  <tr
+                    key={index}
+                    className="hover:bg-gray-light hover:cursor-pointer text-sm"
+                    onClick={() => onTableClick(item.id)}
+                  >
+                    <td colSpan={2} className=" border-b-2 text-sm px-4 py-2">
+                      {item.provider?.name}
+                      <br />
+                      <span className="text-[#BEC2C6] text-sm">
+                        {format.date(item.createdAt)}
+                      </span>
+                    </td>
+                    <td className="border-b-2 text-sm px-4 py-2">
+                      ${item.amount}
+                    </td>
+                    <td className="border-b-2 text-sm px-4 py-2">
+                      <Status status={item.status} />
+                    </td>
+                  </tr>
+                );
+              })
+>>>>>>> 64e3e61a662b0f453fc6d950c8174ac91ce6c77c
             ) : (
               <tr>
                 <td colSpan={columns.length + 1}>
@@ -174,6 +246,7 @@ export const Table = ({ columns, fetchUrl, rowClick }: any) => {
             )}
           </tbody>
         </table>
+<<<<<<< HEAD
         <div>
           <ReactPaginate
             previousLabel={"<"}
@@ -187,25 +260,16 @@ export const Table = ({ columns, fetchUrl, rowClick }: any) => {
             activeClassName={"paginationActive"}
           />
         </div>
+=======
+        {/* {rowsToShow < totalRows && (
+          <button className="text-sm text-[#4375FF]" onClick={loadMore}>
+            Show more
+          </button>
+        )} */}
+>>>>>>> 64e3e61a662b0f453fc6d950c8174ac91ce6c77c
       </Card>
     </div>
   );
 };
-export const StatusMap = ({ status }: any) => {
-  const [color, setColor] = useState("black");
 
-  useEffect(() => {
-    if (status === "pending") {
-      setColor("#DDAC54");
-    } else if (status === "ready") {
-      setColor("#4375FF");
-    } else if (status === "canceled") {
-      setColor("#BEC2C6");
-    } else {
-      setColor("");
-    }
-  }, [status]);
-
-  return <div style={{ color: color }}>{status}</div>;
-};
 export default Table;

@@ -3,7 +3,7 @@ import { Transition } from "@headlessui/react";
 import { ChevronLeftIconMini } from "lib/@heroicons";
 import { IconButton } from "components";
 
-export const Aside = ({
+export const Drawer = ({
   isShow = false,
   setIsShow,
   children,
@@ -26,7 +26,7 @@ export const Aside = ({
       leaveTo=" translate-x-full "
     >
       <div
-        className={`fixed top-0 right-0 h-screen w-[320px] sm:w-[350px]  bg-gray-light border-2 border-[#D4D4D4] overflow-y-auto px-2 py-5 flex flex-col gap-2 ${className}`}
+        className={`fixed top-0 right-0 h-screen w-[320px] sm:w-[350px]  bg-gray-light border-2 border-[#D4D4D4] overflow-y-auto px-2 py-5 flex flex-col gap-2 z-10 ${className}`}
       >
         <div className=" flex items-center">
           <IconButton
@@ -42,4 +42,4 @@ export const Aside = ({
     </Transition>
   );
 };
-export default Aside;
+export default Drawer;

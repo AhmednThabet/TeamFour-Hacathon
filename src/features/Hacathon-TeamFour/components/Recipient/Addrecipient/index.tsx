@@ -1,6 +1,6 @@
 import { Dialog } from "@headlessui/react";
 import AddresipentForm from "../AddresipentForm";
-const Addrecipent = ({ isOpen, setIsOpen }: any) => {
+export const Addrecipent = ({ isOpen, setIsOpen }: any) => {
   return (
     <div>
       <Dialog

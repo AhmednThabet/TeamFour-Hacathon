@@ -4,7 +4,7 @@ import { Card } from "components";
 export const TimeLine = ({ data = [] }) => {
   let heightActiveLine = Math.floor((1 / data.length) * 100);
   let heightNonActiveLine = Math.floor(
-    ((data.length - 2) / (data.length - 1.3)) * 100
+    ((data.length - 2) / (data.length - 1.5)) * 100
   );
   if (data.length < 2) {
     heightActiveLine = "";

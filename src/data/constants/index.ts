@@ -26,11 +26,19 @@ export const API_SERVICES_URLS = {
   },
   WITHDROW: {
     ADDRECIPINT: "/recipient/list?offset=0&limit=5",
+<<<<<<< HEAD
     withdraw: {
       OFFICE_LIST: "/withdraw/office-list?office=&limit=10",
     },
   } as const,
 };
+=======
+    OFFICE_LIST: "/withdraw/office-list?office=&limit=10",
+    
+  }
+} as const ;
+
+>>>>>>> 64e3e61a662b0f453fc6d950c8174ac91ce6c77c
 export const COOKIES_KEYS = {
   currentUser: "currentUser",
 } as const;

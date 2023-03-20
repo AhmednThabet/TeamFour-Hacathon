@@ -1,6 +1,6 @@
 import React from "react";
 
-const RecipientOption = ({ data, customClassName }: any) => {
+export const RecipientOption = ({ data, customClassName }: any) => {
   return (
     <div
       className={`flex flex-col  w-full  border-gray  px-4 py-2 cursor-pointer ${customClassName}`}

@@ -18,8 +18,13 @@
 @layer base {
   body {
     @apply bg-gray-light;
+<<<<<<< HEAD
+=======
+
+>>>>>>> 64e3e61a662b0f453fc6d950c8174ac91ce6c77c
   }
 }
+
 #resipients::-webkit-scrollbar {
   width: 6px;
 }
@@ -35,6 +40,7 @@
   border-radius: 4px;
   box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
 }
+<<<<<<< HEAD
 .paginationBttns {
   width: 100%;
   height: 40px;
@@ -64,3 +70,15 @@
 .paginationDisabled a {
   color: #8c8c8c;
 }
+=======
+
+
+@layer base {
+
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}
+>>>>>>> 64e3e61a662b0f453fc6d950c8174ac91ce6c77c

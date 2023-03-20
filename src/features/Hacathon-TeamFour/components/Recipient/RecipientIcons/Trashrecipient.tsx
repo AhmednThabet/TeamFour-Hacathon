@@ -4,7 +4,7 @@ import { TrashIcon } from "lib/@heroicons";
 import { Dialog } from "@headlessui/react";
 import { getCookie } from "lib/js-cookie";
 
-import DeleteRecipientConfirm from "../Deletrecipient/DeleteRecipientConfirm";
+import DeleteRecipientConfirm from "../Deletrecipient";
 
 const Trashrecipient = ({ id }: any) => {
   const [isOpen, setIsOpen] = useState(false);

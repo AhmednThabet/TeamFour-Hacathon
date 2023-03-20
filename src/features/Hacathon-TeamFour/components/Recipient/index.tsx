@@ -1,15 +1,14 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { API_SERVICES_URLS, URL_PATHS } from "data";
-import { API_ENDPOINT } from "data";
+import { API_SERVICES_URLS, URL_PATHS, API_ENDPOINT } from "data";
 import { Listbox, Dialog } from "@headlessui/react";
 import { getCookie } from "lib/js-cookie";
 import useSWR from "swr";
-import { Card, Select, Input } from "components";
-import RecipientOption from "./RecipientElemnts/RecipientOption";
-import Addrecipent from "./Addrecipient/Addrecipent";
-import RecipientLoading from "./RecipientElemnts/RecipientLoading";
-import Editrecipent from "./Editreciepient/Editrecipent";
+
+import { RecipientLoading, RecipientOption } from "./RecipientElemnts";
+
+import Editrecipent from "./Editreciepient";
+import Addrecipent from "./Addrecipient";
 
 export const Recipient = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -81,11 +80,10 @@ export const Recipient = () => {
         onClick={() => setIsOpen(true)}
         className="text-blue-light my-2 flex items-center justify-end cursor-pointer"
       >
-        {/* {<PlusIcon height={20} width={20} />} */}
         <p>Add Recipient</p>{" "}
       </div>
     </div>
   );
 };
 
-export default Recipient;
+// export default Recipient;

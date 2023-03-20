@@ -1,4 +1,4 @@
-const RecipientLoading = () => {
+export const RecipientLoading = () => {
   return (
     <div className="border  rounded-md  max-h-12  w-full mx-auto">
       <div className="animate-pulse flex space-x-4">

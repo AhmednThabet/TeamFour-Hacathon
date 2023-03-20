@@ -18,7 +18,15 @@ export * from "./Stepper";
 export * from "./Divider";
 export * from "./Skeleton";
 export * from "./ToggleButtons";
+<<<<<<< HEAD
 export * from "./Table";
 
 export * from "./teamFour";
 export * from "./Loading";
+=======
+
+export * from "./teamFour";
+export * from "./Loading";
+export * from "./Table";
+export * from "./Radio";
+>>>>>>> 64e3e61a662b0f453fc6d950c8174ac91ce6c77c

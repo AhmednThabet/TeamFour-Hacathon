@@ -1,42 +1,23 @@
 import { useState, useEffect } from "react";
-import { AdjustmentsHorizontalIcon, MagnifyingGlassIcon } from "lib/@heroicons";
+import { MagnifyingGlassIcon } from "lib/@heroicons";
+import { Input } from "components";
 
-const Search = ({ setSearch: onSearchSubmit }: any) => {
+const Search = ({ onSearch, className = "" }) => {
   const [term, setTerm] = useState("");
-  const [debouncedTerm, setDebouncedTerm] = useState(term);
-  useEffect(() => {
-    const timer = setTimeout(() => setTerm(debouncedTerm), 500);
-    return () => clearTimeout(timer);
-  }, [debouncedTerm]);
 
-  useEffect(() => {
-    if (term !== "") {
-      onSearchSubmit(term);
-    } else {
-      onSearchSubmit("");
-    }
-  }, [onSearchSubmit, term]);
+  function handleText(e) {
+    setTerm(e.target.value);
+  }
   return (
-    <div className="relative mb-4 ">
-      <MagnifyingGlassIcon
-        width={24}
-        height={24}
-        className="absolute inset-2"
-      />
-      <input
-        type="search"
-        placeholder="search"
-        value={debouncedTerm}
-        onChange={(e) => setDebouncedTerm(e.target.value)}
-        className="w-full border-none py-2 rounded px-12"
-      />
-      {/* <AdjustmentsHorizontalIcon
-        width={24}
-        height={24}
-        className="absolute right-4 top-4 cursor-pointer"
-      /> */}
-      <div className=""></div>
-    </div>
+    <Input
+      startIcon={<MagnifyingGlassIcon className="w-5 h-5" />}
+      className={`w-[200px]  ${className}`}
+      withoutHelperText
+      inputClassName="shadow !py-[6px] pl-10  "
+      onChange={handleText}
+      value={term}
+      onBlur={() => onSearch(term)}
+    />
   );
 };
 
