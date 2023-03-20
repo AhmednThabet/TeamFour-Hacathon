@@ -15,9 +15,9 @@ function getList(keys = "") {
 function getOptions(token, method = "get", data) {
   const options = {
     headers: {
-      method,
       Authorization: token,
     },
+    method,
   };
   if (data) {
     options.body = data;
