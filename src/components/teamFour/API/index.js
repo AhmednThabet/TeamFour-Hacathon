@@ -13,7 +13,6 @@ function getList(keys = "") {
 }
 
 function getOptions(token, method = "get", data) {
-  console.log(token);
   const options = {
     headers: {
       Authorization: token,

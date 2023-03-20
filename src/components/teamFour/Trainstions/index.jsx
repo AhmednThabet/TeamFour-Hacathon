@@ -1,7 +1,7 @@
 import IconButton from "components/IconButton";
 import Input from "components/Input";
 import Table from "components/Table";
-import SearchFilter from "components/Table/Search/SearchFilter";
+import SearchFilter from "components/Table/SearchFilter";
 import { URL_PATHS } from "data";
 import { useFetch } from "hooks";
 import { Download, MagnifyingGlassIcon } from "lib/@heroicons";
@@ -33,6 +33,12 @@ const reducer = function (hash, action) {
           isUp: false,
         },
         search: action.payLoad,
+      };
+    }
+    case "SELECT": {
+      return {
+        ...hash,
+        select: action.payLoad,
       };
     }
   }
@@ -74,11 +80,19 @@ function getAction(baseOn) {
 }
 
 function getURL(hash) {
-  let url = "";
+  let url = ["?"];
   if (hash.search) {
-    url += `?search=${hash.search}`;
+    url.push(`search=${hash.search}`);
   }
-  return url;
+  let temp = hash.select;
+  for (let i in temp) {
+    if (url.length > 1) {
+      url.push(`&filter=${i.toLowerCase()}`);
+    } else {
+      url.push(`filter=${i.toLowerCase()}`);
+    }
+  }
+  return url.join("");
 }
 
 export function Trainstions({ handleClickOnTable }) {
@@ -89,6 +103,7 @@ export function Trainstions({ handleClickOnTable }) {
       baseOn: "",
       isUp: false,
     },
+    select: {},
   });
 
   const Authorization = getAuthorizationHeader();
@@ -99,6 +114,8 @@ export function Trainstions({ handleClickOnTable }) {
   }
 
   const { isLoading, fetch } = useFetch();
+
+  console.log("hash", hash);
 
   useEffect(() => {
     async function run() {
@@ -113,7 +130,7 @@ export function Trainstions({ handleClickOnTable }) {
       });
     }
     run();
-  }, [hash.search]);
+  }, [hash.search, hash.select]);
 
   return (
     <div>
@@ -135,7 +152,7 @@ export function Trainstions({ handleClickOnTable }) {
               <span>Withdraw</span>
             </p>
           </Link>
-          <SearchFilter />
+          <SearchFilter dispatch={dispatch} />
         </div>
       </div>
       <Table
