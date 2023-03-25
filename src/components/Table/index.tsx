@@ -27,8 +27,8 @@ export const Table = ({
         <table className="min-w-[400px] w-full text-sm">
           <thead className="bg-white text-[#9E9E9E] mb-4 text-sm font-normal px-4	">
             <tr>
-              {columns.map((column) => (
-                <Th column={column} sort={sort} order={hash.sort} />
+              {columns.map((column, index) => (
+                <Th key={index} column={column} sort={sort} order={hash.sort} />
               ))}
             </tr>
           </thead>
