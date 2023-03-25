@@ -10,8 +10,8 @@ export const Table = ({
   dispatch,
   hash,
   isLoading,
-}) => {
-  function sort(baseOn, isUp) {
+}: any) => {
+  function sort(baseOn: any, isUp: any) {
     dispatch({
       type: "SORT",
       payLoad: {
@@ -27,7 +27,7 @@ export const Table = ({
         <table className="min-w-[400px] w-full text-sm">
           <thead className="bg-white text-[#9E9E9E] mb-4 text-sm font-normal px-4	">
             <tr>
-              {columns.map((column, index) => (
+              {columns.map((column: any, index: any) => (
                 <Th key={index} column={column} sort={sort} order={hash.sort} />
               ))}
             </tr>
@@ -35,7 +35,7 @@ export const Table = ({
           <tbody>
             {!isLoading && hash.data?.length === 0 && <tr>No data found</tr>}
             {!isLoading ? (
-              hash.data?.map((item, index) => {
+              hash.data?.map((item: any, index: any) => {
                 return (
                   <tr
                     key={index}
